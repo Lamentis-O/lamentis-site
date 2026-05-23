@@ -225,7 +225,13 @@ export function SiteFooter({ locale, content }: SiteFooterProps) {
       </div>
 
       <div className="ds-site-footer__bottom">
-        <span>{content.copyright}</span>
+        <span className="ds-site-footer__copyright">
+          <span>{content.copyright}</span>
+          {" "}
+          <span className="ds-site-footer__disabled-link">
+            {content.productionCredit}
+          </span>
+        </span>
         <label className="ds-site-footer__language-shell">
           <span className="sr-only">{content.languageLabel}</span>
           <LanguageButton currentLanguage={locale} content={content} />

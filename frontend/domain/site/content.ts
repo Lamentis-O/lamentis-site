@@ -26,6 +26,7 @@ export type FooterCopy = {
   languageLabel: string;
   languageOptions: { code: Locale; label: string }[];
   copyright: string;
+  productionCredit: string;
 };
 
 export type HomepageCopy = {
@@ -88,6 +89,7 @@ type LocalizedCopy = readonly [
   aboutLabel: string,
   languageLabel: string,
   copyright: string,
+  productionCredit: string,
 ];
 
 const localizedCopy = {
@@ -101,7 +103,8 @@ const localizedCopy = {
     [{ label: "Privacy Policy", disabled: true }, { label: "Terms of Service", disabled: true }, { label: "Legal Notice", href: "/en/legal-notice" }],
     "About Me",
     "Language",
-    "© 2026 Lamentis. Responsible: Elias Papavlassopoulos",
+    "© 2026 Lamentis.",
+    "An Elias Papavlassopoulos production.",
   ],
   de: [
     "Projekte von Elias Papavlassopoulos",
@@ -113,12 +116,13 @@ const localizedCopy = {
     [{ label: "Datenschutzerklärung", disabled: true }, { label: "Nutzungsbedingungen", disabled: true }, { label: "Impressum", href: "/de/legal-notice" }],
     "Über mich",
     "Sprache",
-    "© 2026 Lamentis. Verantwortlich: Elias Papavlassopoulos",
+    "© 2026 Lamentis.",
+    "Eine Elias Papavlassopoulos Produktion.",
   ],
 } satisfies Record<Locale, LocalizedCopy>;
 
 function footerCopy(locale: Locale, copy: LocalizedCopy): FooterCopy {
-  const [, , platformTitle, accountTitle, accountLinks, legalTitle, legalLinks, aboutLabel, languageLabel, copyright] = copy;
+  const [, , platformTitle, accountTitle, accountLinks, legalTitle, legalLinks, aboutLabel, languageLabel, copyright, productionCredit] = copy;
 
   return {
     brand: "Lamentis",
@@ -129,6 +133,7 @@ function footerCopy(locale: Locale, copy: LocalizedCopy): FooterCopy {
     languageLabel,
     languageOptions,
     copyright,
+    productionCredit,
   };
 }
 
