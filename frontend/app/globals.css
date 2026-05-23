@@ -388,7 +388,7 @@ body {
     -webkit-background-clip: text;
     color: transparent;
     font-family: var(--ds-font-family-product-display);
-    font-size: clamp(5.2rem, 10vw, 12.8rem);
+    font-size: clamp(6.2rem, 12vw, 15.2rem);
     font-weight: 900;
     line-height: 0.9;
     overflow-wrap: anywhere;

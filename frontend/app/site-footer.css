@@ -132,8 +132,9 @@
     }
 
     .ds-site-footer__bottom-inner {
-      align-items: flex-start;
+      align-items: center;
       flex-direction: column;
+      text-align: center;
     }
   }
 
