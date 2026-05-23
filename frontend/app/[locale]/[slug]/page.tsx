@@ -5,7 +5,7 @@ import {
   supportedLocales,
 } from "@/lib/home-content";
 
-const emptyPageSlugs = ["naome", "nox", "noma", "legal-notice"] as const;
+const emptyPageSlugs = ["naome", "nox", "noma", "legal-notice", "about-me"] as const;
 
 type EmptyPageSlug = (typeof emptyPageSlugs)[number];
 
@@ -15,12 +15,14 @@ const emptyPageLabels: Record<Locale, Record<EmptyPageSlug, string>> = {
     nox: "Nox",
     noma: "Noma",
     "legal-notice": "Legal Notice",
+    "about-me": "About Me",
   },
   de: {
     naome: "Naome",
     nox: "Nox",
     noma: "Noma",
     "legal-notice": "Impressum",
+    "about-me": "Über mich",
   },
 };
 
@@ -52,4 +54,3 @@ export default async function EmptyLocalizedPage({
     />
   );
 }
-

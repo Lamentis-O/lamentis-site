@@ -51,6 +51,22 @@ function renderFooterLink(link: FooterSectionLink, index: number, className: str
           />
         </svg>
       )
+      : link.icon === "about"
+      ? (
+        <svg
+          aria-hidden="true"
+          width={16}
+          height={16}
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill="currentColor"
+            d="M12 12c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5zm0 2c-3.314 0-10 1.657-10 5v3h20v-3c0-3.343-6.686-5-10-5z"
+          />
+        </svg>
+      )
       : null;
 
   if (link.action) {

@@ -8,7 +8,7 @@ export type FooterSectionLink = {
   disabled?: boolean;
   action?: boolean;
   external?: boolean;
-  icon?: "github" | "linkedin";
+  icon?: "github" | "linkedin" | "about";
 };
 
 export type FooterSection = {
@@ -69,6 +69,11 @@ export const contentByLocale: Record<Locale, HomepageCopy> = {
         title: "Links",
         links: [
           {
+            label: "About Me",
+            href: "/en/about-me",
+            icon: "about",
+          },
+          {
             label: "GitHub",
             href: "https://github.com/Lamentis-O",
             external: true,
@@ -124,6 +129,11 @@ export const contentByLocale: Record<Locale, HomepageCopy> = {
       social: {
         title: "Links",
         links: [
+          {
+            label: "Über mich",
+            href: "/de/about-me",
+            icon: "about",
+          },
           {
             label: "GitHub",
             href: "https://github.com/Lamentis-O",
