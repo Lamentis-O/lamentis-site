@@ -1,6 +1,13 @@
+import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-import { resolveLocaleFromAcceptLanguage } from "@/lib/home-content";
+import { defaultSiteIcons, resolveLocaleFromAcceptLanguage } from "@/lib/home-content";
+
+export const metadata: Metadata = {
+  title: "Lamentis",
+  description: "Lamentis Frontend on Next.js",
+  icons: defaultSiteIcons,
+};
 
 export default async function Home() {
   const acceptLanguage = (await headers()).get("accept-language");
