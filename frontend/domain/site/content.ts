@@ -8,6 +8,9 @@ export type FooterSectionLink = {
   disabled?: boolean;
   action?: boolean;
   external?: boolean;
+  product?: "naome" | "nox" | "noma";
+  productName?: string;
+  productSuffix?: string;
   icon?: "github" | "linkedin" | "about";
   iconSrc?: string;
 };
@@ -32,12 +35,17 @@ export type FooterCopy = {
 export type HomepageCopy = {
   metaTitle: string;
   metaDescription: string;
+  statusLabel: string;
   footer: FooterCopy;
 };
 
 const languageOptions = [{ code: "en", label: "English" }, { code: "de", label: "Deutsch" }] satisfies FooterCopy["languageOptions"];
 
-const platformNames = ["Naome", "Nox", "Noma"] as const;
+const platformLinks = [
+  { product: "naome", productName: "Naome", productSuffix: "ASOS" },
+  { product: "noma", productName: "Noma", productSuffix: "Tasks" },
+  { product: "nox", productName: "Nox", productSuffix: "- Social Events" },
+] as const;
 
 export const externalProfileUrls = {
   github: "https://github.com/Lamentis-O",
@@ -60,9 +68,12 @@ const sharedExternalLinks: FooterSectionLink[] = [
 ];
 
 function localizedPlatformLinks(locale: Locale): FooterSectionLink[] {
-  return platformNames.map((label) => ({
-    label,
-    href: `/${locale}/${label.toLowerCase()}`,
+  return platformLinks.map(({ product, productName, productSuffix }) => ({
+    product,
+    productName,
+    productSuffix,
+    label: `${productName} ${productSuffix}`,
+    href: `/${locale}/${product}`,
   }));
 }
 
@@ -81,6 +92,7 @@ function socialLinks(locale: Locale, aboutLabel: string): FooterSectionLink[] {
 type LocalizedCopy = readonly [
   metaTitle: string,
   metaDescription: string,
+  statusLabel: string,
   platformTitle: string,
   accountTitle: string,
   accountLinks: FooterSectionLink[],
@@ -96,6 +108,7 @@ const localizedCopy = {
   en: [
     "Projects by Elias Papavlassopoulos",
     "Lamentis landing page: plan, coordinate, and host private and public events with your social circle.",
+    "Coming soon",
     "Platform",
     "Account",
     [{ label: "Log in", disabled: true }, { label: "Sign up", disabled: true }, { label: "Safety", disabled: true }, { label: "View roadmap", disabled: true }],
@@ -109,6 +122,7 @@ const localizedCopy = {
   de: [
     "Projekte von Elias Papavlassopoulos",
     "Lamentis-Startseite: Plane, koordiniere und organisiere private und öffentliche Events.",
+    "Demnächst",
     "Plattform",
     "Konto",
     [{ label: "Einloggen", disabled: true }, { label: "Registrieren", disabled: true }, { label: "Sicherheit", disabled: true }, { label: "Roadmap ansehen", disabled: true }],
@@ -122,7 +136,7 @@ const localizedCopy = {
 } satisfies Record<Locale, LocalizedCopy>;
 
 function footerCopy(locale: Locale, copy: LocalizedCopy): FooterCopy {
-  const [, , platformTitle, accountTitle, accountLinks, legalTitle, legalLinks, aboutLabel, languageLabel, copyright, productionCredit] = copy;
+  const [, , , platformTitle, accountTitle, accountLinks, legalTitle, legalLinks, aboutLabel, languageLabel, copyright, productionCredit] = copy;
 
   return {
     brand: "Lamentis",
@@ -140,11 +154,12 @@ function footerCopy(locale: Locale, copy: LocalizedCopy): FooterCopy {
 export const contentByLocale = Object.fromEntries(
   supportedLocales.map((locale) => {
     const copy = localizedCopy[locale];
-    const [metaTitle, metaDescription] = copy;
+    const [metaTitle, metaDescription, statusLabel] = copy;
 
     return [locale, {
       metaTitle,
       metaDescription,
+      statusLabel,
       footer: footerCopy(locale, copy),
     }];
   }),

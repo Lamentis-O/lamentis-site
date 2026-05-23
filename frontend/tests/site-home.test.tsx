@@ -13,6 +13,8 @@ describe("Homepage shell", () => {
     );
 
     expect(screen.queryByRole("heading", { level: 1 })).not.toBeInTheDocument();
+    expect(screen.getByText(contentByLocale.de.statusLabel)).toBeInTheDocument();
+    expect(screen.queryByText(contentByLocale.en.statusLabel)).not.toBeInTheDocument();
     expect(
       screen.getByRole("heading", {
         level: 2,
@@ -72,6 +74,18 @@ describe("Footer", () => {
     expect(
       screen.getByRole("link", { name: "GitHub" }),
     ).toHaveAttribute("target", "_blank");
+    expect(
+      screen.getByRole("link", { name: "Naome ASOS" }),
+    ).toHaveAttribute("href", "/en/naome");
+    expect(
+      screen.getByRole("link", { name: "Nox - Social Events" }),
+    ).toHaveAttribute("href", "/en/nox");
+    expect(
+      screen.getByRole("link", { name: "Noma Tasks" }),
+    ).toHaveAttribute("href", "/en/noma");
+    expect(
+      contentByLocale.en.footer.platform.links.map((link) => link.label),
+    ).toEqual(["Naome ASOS", "Noma Tasks", "Nox - Social Events"]);
 
     expect(screen.getByRole("option", { name: "English" })).toHaveAttribute("href", "/en");
     expect(screen.getByRole("option", { name: "Deutsch" })).toHaveAttribute("href", "/de");
