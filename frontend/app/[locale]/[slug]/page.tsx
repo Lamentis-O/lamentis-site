@@ -39,7 +39,18 @@ const emptyPageDescriptions: Record<Locale, Record<EmptyPageSlug, string>> = {
     nox: "Nox-Projektseite auf Lamentis.",
     noma: "Noma-Projektseite auf Lamentis.",
     "legal-notice":
-      "Impressum und Verantwortlichenangaben fuer Lamentis.",
+      "Impressum und Verantwortlichenangaben für Lamentis.",
+  },
+};
+
+const naomePageCopy: Record<Locale, { tagline: string }> = {
+  en: {
+    tagline:
+      "An Autopoietic Software OS for autonomous, proof-driven software evolution. The first system of its kind.",
+  },
+  de: {
+    tagline:
+      "Ein autopoietisches Software-OS für autonome, beweisgestützte Software-Evolution. Das erste System dieser Art.",
   },
 };
 
@@ -84,6 +95,25 @@ export default async function EmptyLocalizedPage({
 
   if (!isSupportedLocale(locale) || !isEmptyPageSlug(slug)) {
     notFound();
+  }
+
+  if (slug === "naome") {
+    return (
+      <main className="ds-product-page" aria-label={emptyPageLabels[locale][slug]}>
+        <section
+          className="ds-page-boundary ds-product-intro"
+          aria-labelledby="naome-title"
+        >
+          <h1
+            id="naome-title"
+            className="ds-product-title ds-product-title--naome"
+          >
+            NAOME
+          </h1>
+          <p className="ds-product-subline">{naomePageCopy[locale].tagline}</p>
+        </section>
+      </main>
+    );
   }
 
   return (

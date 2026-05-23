@@ -8,6 +8,9 @@ export type FooterSectionLink = {
   disabled?: boolean;
   action?: boolean;
   external?: boolean;
+  product?: "naome" | "nox" | "noma";
+  productName?: string;
+  productSuffix?: string;
   icon?: "github" | "linkedin" | "about";
   iconSrc?: string;
 };
@@ -37,7 +40,11 @@ export type HomepageCopy = {
 
 const languageOptions = [{ code: "en", label: "English" }, { code: "de", label: "Deutsch" }] satisfies FooterCopy["languageOptions"];
 
-const platformNames = ["Naome", "Nox", "Noma"] as const;
+const platformLinks = [
+  { product: "naome", productName: "Naome", productSuffix: "ASOS" },
+  { product: "noma", productName: "Noma", productSuffix: "Tasks" },
+  { product: "nox", productName: "Nox", productSuffix: "- Social Events" },
+] as const;
 
 export const externalProfileUrls = {
   github: "https://github.com/Lamentis-O",
@@ -60,9 +67,12 @@ const sharedExternalLinks: FooterSectionLink[] = [
 ];
 
 function localizedPlatformLinks(locale: Locale): FooterSectionLink[] {
-  return platformNames.map((label) => ({
-    label,
-    href: `/${locale}/${label.toLowerCase()}`,
+  return platformLinks.map(({ product, productName, productSuffix }) => ({
+    product,
+    productName,
+    productSuffix,
+    label: `${productName} ${productSuffix}`,
+    href: `/${locale}/${product}`,
   }));
 }
 

@@ -49,8 +49,23 @@ function FooterLinkIcon({ link }: { link: FooterSectionLink }) {
   );
 }
 
+function FooterLinkLabel({ link }: { link: FooterSectionLink }) {
+  if (!link.product || !link.productName || !link.productSuffix) {
+    return link.label;
+  }
+
+  return (
+    <>
+      <span>{link.productName}</span>
+      {" "}
+      <span>{link.productSuffix}</span>
+    </>
+  );
+}
+
 function renderFooterLink(link: FooterSectionLink, index: number, className: string) {
   const icon = <FooterLinkIcon link={link} />;
+  const label = <FooterLinkLabel link={link} />;
 
   if (link.action) {
     return (
@@ -59,9 +74,9 @@ function renderFooterLink(link: FooterSectionLink, index: number, className: str
         type="button"
         className="ds-site-footer__link-button"
       >
-      {link.label}
-    </button>
-  );
+        {label}
+      </button>
+    );
   }
 
   if (link.disabled || !link.href) {
@@ -71,7 +86,7 @@ function renderFooterLink(link: FooterSectionLink, index: number, className: str
         className="ds-site-footer__disabled-link"
         aria-disabled="true"
       >
-        {link.label}
+        {label}
       </span>
     );
   }
@@ -87,10 +102,10 @@ function renderFooterLink(link: FooterSectionLink, index: number, className: str
       {icon ? (
         <span className="ds-site-footer__link-content">
           {icon}
-          <span>{link.label}</span>
+          <span>{label}</span>
         </span>
       ) : (
-        link.label
+        label
       )}
     </a>
   );
@@ -204,7 +219,7 @@ function LanguageButton({
 export function SiteFooter({ locale, content }: SiteFooterProps) {
   return (
     <footer className="ds-site-footer">
-      <div className="ds-site-footer__brand-row">
+      <div className="ds-page-boundary ds-site-footer__brand-row">
         <a href={`/${locale}`} className="ds-site-footer__brand" aria-label="Lamentis">
           <Image
             src="/assets/images/app-logo-20260424.png"
@@ -217,7 +232,7 @@ export function SiteFooter({ locale, content }: SiteFooterProps) {
         </a>
       </div>
 
-      <div className="ds-site-footer__grid">
+      <div className="ds-page-boundary ds-site-footer__grid">
         <FooterSectionBlock section={content.platform} />
         <FooterSectionBlock section={content.account} />
         <FooterSectionBlock section={content.legal} />
@@ -225,17 +240,19 @@ export function SiteFooter({ locale, content }: SiteFooterProps) {
       </div>
 
       <div className="ds-site-footer__bottom">
-        <span className="ds-site-footer__copyright">
-          <span>{content.copyright}</span>
-          {" "}
-          <span className="ds-site-footer__disabled-link">
-            {content.productionCredit}
+        <div className="ds-page-boundary ds-site-footer__bottom-inner">
+          <span className="ds-site-footer__copyright">
+            <span>{content.copyright}</span>
+            {" "}
+            <span className="ds-site-footer__disabled-link">
+              {content.productionCredit}
+            </span>
           </span>
-        </span>
-        <label className="ds-site-footer__language-shell">
-          <span className="sr-only">{content.languageLabel}</span>
-          <LanguageButton currentLanguage={locale} content={content} />
-        </label>
+          <label className="ds-site-footer__language-shell">
+            <span className="sr-only">{content.languageLabel}</span>
+            <LanguageButton currentLanguage={locale} content={content} />
+          </label>
+        </div>
       </div>
     </footer>
   );
