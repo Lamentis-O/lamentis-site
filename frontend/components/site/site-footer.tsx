@@ -15,16 +15,20 @@ type SiteFooterProps = {
   content: FooterCopy;
 };
 
+const footerProfileBlurDataUrl =
+  "data:image/webp;base64,UklGRiwAAABXRUJQVlA4ICAAAABwAQCdASoQABAABABsJaQAAoQgAADFN6hO6EIDuIAAAA==";
+
 function FooterLinkIcon({ link }: { link: FooterSectionLink }) {
   if (link.iconSrc) {
     return (
       <Image
-        unoptimized
         src={link.iconSrc}
         alt={`${link.label} profile`}
         className="ds-site-footer__link-avatar"
         width={20}
         height={20}
+        placeholder="blur"
+        blurDataURL={footerProfileBlurDataUrl}
       />
     );
   }

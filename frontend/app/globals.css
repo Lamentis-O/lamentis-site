@@ -108,6 +108,7 @@
     rgb(249, 115, 22) 44%,
     rgb(236, 72, 153) 100%
   );
+  --ds-image-placeholder-naome-texture: url("data:image/webp;base64,UklGRkwAAABXRUJQVlA4IEAAAABwAwCdASocAA8APyF6s1GyJ6SisAgCQCQJZACdMoADRMPzzAAA/ctQdEO/FfkzgGpYl80IgxfUEPhjEYe+ZQAA");
 
   --ds-color-cta-bg-light: rgb(16, 19, 23);
   --ds-color-cta-bg-dark: rgb(255, 255, 255);
@@ -390,9 +391,11 @@ body {
   }
 
   .ds-product-title--naome {
-    background-image: url("/assets/images/naome-texture-blurred-20260523.png");
+    background-image:
+      url("/assets/images/naome-texture-blurred-20260523.webp"),
+      var(--ds-image-placeholder-naome-texture);
     background-position: center;
-    background-size: cover;
+    background-size: cover, cover;
   }
 
   .ds-product-subline {
