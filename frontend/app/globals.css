@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./site-home.css";
 @import "./site-footer.css";
 @import "./site-footer-language.css";
 
