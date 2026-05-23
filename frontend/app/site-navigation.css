@@ -58,13 +58,13 @@
     position: relative;
     z-index: 1;
     display: inline-flex;
-    min-height: 5rem;
+    min-height: 5.4rem;
     align-items: center;
     justify-content: center;
     border-radius: var(--ds-radius-pill);
-    padding: 0 var(--ds-space-8);
+    padding: 0 var(--ds-space-12);
     color: var(--ds-color-muted);
-    font-size: 1.7rem;
+    font-size: 1.95rem;
     font-weight: var(--ds-font-weight-bold);
     line-height: 1;
     text-decoration: none;
@@ -110,9 +110,9 @@
     }
 
     .ds-segmented-navigation__item {
-      min-height: 3.8rem;
-      padding: 0 1.6rem;
-      font-size: 1.45rem;
+      min-height: 4.4rem;
+      padding: 0 2.4rem;
+      font-size: 1.75rem;
     }
 
     .ds-segmented-navigation__label--desktop {
