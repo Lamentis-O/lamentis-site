@@ -108,7 +108,7 @@
     rgb(249, 115, 22) 44%,
     rgb(236, 72, 153) 100%
   );
-  --ds-image-placeholder-naome-texture: url("data:image/webp;base64,UklGRkwAAABXRUJQVlA4IEAAAABwAwCdASocAA8APyF6s1GyJ6SisAgCQCQJZACdMoADRMPzzAAA/ctQdEO/FfkzgGpYl80IgxfUEPhjEYe+ZQAA");
+  --ds-image-placeholder-naome-texture: url("data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAABQAwCdASogABgAPv1mqVC/paQit+gD8B+JZgCsOUABtFSRgAD+7PyDB/zBP/ST/jdzjP0B+89JmaeFMvlv+1fDjw9DPVLDHS8fs4QAAAA=");
 
   --ds-color-cta-bg-light: rgb(16, 19, 23);
   --ds-color-cta-bg-dark: rgb(255, 255, 255);
@@ -401,7 +401,7 @@ body {
         color-mix(in srgb, var(--ds-color-primary-background) 26%, transparent)
           100%
       ),
-      url("/assets/images/naome-texture-blurred-20260523.webp"),
+      url("/assets/images/naome-texture-20260523.webp"),
       var(--ds-image-placeholder-naome-texture);
     background-position: center;
     background-size: cover, cover, cover;
