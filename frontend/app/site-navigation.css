@@ -108,8 +108,11 @@
     padding: clamp(5.6rem, 12vh, 9.6rem) var(--ds-web-gutter)
       calc(env(safe-area-inset-bottom) + var(--ds-space-8));
     background: var(--ds-color-primary-background);
+    overflow-y: auto;
+    overscroll-behavior: contain;
     animation: ds-site-navigation-menu-in 220ms cubic-bezier(0.22, 1, 0.36, 1)
       both;
+    -webkit-overflow-scrolling: touch;
   }
 
   .ds-site-navigation__mobile-link {

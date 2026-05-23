@@ -2,7 +2,15 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type Dispatch,
+  type RefObject,
+  type SetStateAction,
+} from "react";
 import {
   contentByLocale,
   type FooterSectionLink,
@@ -14,6 +22,105 @@ type SiteNavigationProps = {
 };
 
 type ProductLink = FooterSectionLink & { href: string };
+type SetMobileMenuOpen = Dispatch<SetStateAction<boolean>>;
+
+const desktopNavigationQuery = "(min-width: 641px)";
+
+function useMeasuredNavigationHeight(navigationInnerRef: RefObject<HTMLDivElement | null>) {
+  useEffect(() => {
+    const navigationInner = navigationInnerRef.current;
+
+    if (!navigationInner) {
+      return undefined;
+    }
+
+    const updateNavigationHeight = () => {
+      document.documentElement.style.setProperty(
+        "--ds-site-navigation-height",
+        `${navigationInner.offsetHeight}px`,
+      );
+    };
+
+    updateNavigationHeight();
+
+    if (typeof ResizeObserver === "undefined") {
+      return () => {
+        document.documentElement.style.removeProperty("--ds-site-navigation-height");
+      };
+    }
+
+    const observer = new ResizeObserver(updateNavigationHeight);
+    observer.observe(navigationInner);
+
+    return () => {
+      observer.disconnect();
+      document.documentElement.style.removeProperty("--ds-site-navigation-height");
+    };
+  }, [navigationInnerRef]);
+}
+
+function useBodyScrollLock(isMobileMenuOpen: boolean) {
+  useEffect(() => {
+    document.body.classList.toggle("has-open-site-navigation", isMobileMenuOpen);
+
+    return () => {
+      document.body.classList.remove("has-open-site-navigation");
+    };
+  }, [isMobileMenuOpen]);
+}
+
+function useCloseMobileMenuOnRouteChange(
+  isMobileMenuOpen: boolean,
+  pathname: string,
+  setIsMobileMenuOpen: SetMobileMenuOpen,
+) {
+  const previousPathnameRef = useRef(pathname);
+
+  useEffect(() => {
+    if (previousPathnameRef.current === pathname) {
+      return undefined;
+    }
+
+    previousPathnameRef.current = pathname;
+
+    if (!isMobileMenuOpen) {
+      return undefined;
+    }
+
+    const closeMenu = window.setTimeout(() => {
+      setIsMobileMenuOpen(false);
+    }, 0);
+
+    return () => {
+      window.clearTimeout(closeMenu);
+    };
+  }, [isMobileMenuOpen, pathname, setIsMobileMenuOpen]);
+}
+
+function useCloseMobileMenuOnDesktop(
+  isMobileMenuOpen: boolean,
+  setIsMobileMenuOpen: SetMobileMenuOpen,
+) {
+  useEffect(() => {
+    if (!isMobileMenuOpen || typeof window.matchMedia !== "function") {
+      return undefined;
+    }
+
+    const desktopQuery = window.matchMedia(desktopNavigationQuery);
+    const closeMenuOnDesktop = () => {
+      if (desktopQuery.matches) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    closeMenuOnDesktop();
+    desktopQuery.addEventListener("change", closeMenuOnDesktop);
+
+    return () => {
+      desktopQuery.removeEventListener("change", closeMenuOnDesktop);
+    };
+  }, [isMobileMenuOpen, setIsMobileMenuOpen]);
+}
 
 function ProductLinks({ links }: { links: ProductLink[] }) {
   return (
@@ -80,20 +187,22 @@ function MobileMenu({
 export function SiteNavigation({ locale }: SiteNavigationProps) {
   const links = contentByLocale[locale].footer.platform.links;
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const navigationInnerRef = useRef<HTMLDivElement>(null);
 
   const productLinks = links.filter((link): link is ProductLink => Boolean(link.href));
 
-  useEffect(() => {
-    document.body.classList.toggle("has-open-site-navigation", isMobileMenuOpen);
-
-    return () => {
-      document.body.classList.remove("has-open-site-navigation");
-    };
-  }, [isMobileMenuOpen]);
+  useMeasuredNavigationHeight(navigationInnerRef);
+  useBodyScrollLock(isMobileMenuOpen);
+  useCloseMobileMenuOnRouteChange(isMobileMenuOpen, pathname, setIsMobileMenuOpen);
+  useCloseMobileMenuOnDesktop(isMobileMenuOpen, setIsMobileMenuOpen);
 
   return (
     <nav className="ds-site-navigation" aria-label="Product navigation">
-      <div className="ds-page-boundary ds-site-navigation__inner">
+      <div
+        ref={navigationInnerRef}
+        className="ds-page-boundary ds-site-navigation__inner"
+      >
         <Link href={`/${locale}`} className="ds-site-navigation__brand" aria-label="Lamentis">
           <Image
             src="/assets/images/app-logo-20260424.png"
