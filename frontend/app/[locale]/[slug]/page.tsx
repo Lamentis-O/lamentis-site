@@ -1,5 +1,7 @@
 import { notFound } from "next/navigation";
+import { type Metadata } from "next";
 import {
+  defaultSiteIcons,
   isSupportedLocale,
   type Locale,
   supportedLocales,
@@ -32,6 +34,22 @@ export function generateStaticParams() {
   return supportedLocales.flatMap((locale) =>
     emptyPageSlugs.map((slug) => ({ locale, slug })),
   );
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+
+  if (!isSupportedLocale(locale)) {
+    notFound();
+  }
+
+  return {
+    icons: defaultSiteIcons,
+  };
 }
 
 export default async function EmptyLocalizedPage({

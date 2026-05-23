@@ -2,6 +2,7 @@ import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 import { SiteHome } from "@/components/site/site-home";
 import {
+  defaultSiteIcons,
   contentByLocale,
   isSupportedLocale,
   supportedLocales,
@@ -23,6 +24,7 @@ export async function generateMetadata({
   }
 
   return {
+    icons: defaultSiteIcons,
     title: contentByLocale[locale].metaTitle,
     description: contentByLocale[locale].metaDescription,
   };
@@ -41,4 +43,3 @@ export default async function LocalizedHomePage({
 
   return <SiteHome copy={contentByLocale[locale]} />;
 }
-
