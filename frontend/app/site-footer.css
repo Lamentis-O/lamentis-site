@@ -53,7 +53,7 @@
   .ds-site-footer__bottom {
     color: var(--ds-color-muted);
     font-size: 1.45rem;
-    font-weight: 800;
+    font-weight: var(--ds-font-weight-medium);
     line-height: 1.2;
   }
 
