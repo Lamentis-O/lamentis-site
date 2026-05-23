@@ -29,11 +29,18 @@ export function generateMetadata(): Metadata {
     icons: {
       icon: [
         {
-          url: "/assets/images/about-favicon-circle.svg",
-          type: "image/svg+xml",
+          url: "/assets/images/about-favicon-elias-20260523-32.png",
+          type: "image/png",
+          sizes: "32x32",
+        },
+        {
+          url: "/assets/images/about-favicon-elias-20260523-64.png",
+          type: "image/png",
+          sizes: "64x64",
         },
       ],
-      shortcut: "/assets/images/about-favicon-circle.svg",
+      shortcut: "/assets/images/about-favicon-elias-20260523-32.png",
+      apple: "/assets/images/about-apple-touch-elias-20260523.png",
     },
   };
 }
