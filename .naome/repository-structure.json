@@ -66,7 +66,8 @@
     "go.sum",
     "Makefile",
     ".gitignore",
-    ".naomeignore"
+    ".naomeignore",
+    "vercel.json"
   ],
   "directoryRoleRules": [
     {
