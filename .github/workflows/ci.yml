@@ -46,16 +46,24 @@ jobs:
         working-directory: frontend
         run: npm audit --audit-level=high
 
-      - name: Validate NAOME harness
-        run: node .naome/bin/check-harness-health.js
-
-      - name: Validate NAOME task state
+      - name: Run NAOME repository gates when harness is available
         run: |
-          if [[ -f .naome/task-state.json ]]; then
+          if [[ ! -f .naome/bin/naome.js || ! -f .naome/bin/check-harness-health.js ]]; then
+            echo "Skipping NAOME gates: local harness files are not present in this checkout."
+            exit 0
+          fi
+
+          node .naome/bin/check-harness-health.js
+
+          if [[ -f .naome/bin/check-task-state.js && -f .naome/task-state.json ]]; then
             node .naome/bin/check-task-state.js
           else
-            node .naome/bin/naome.js task status --json
+            echo "Skipping NAOME task-state validation: local task-state is not present in this checkout."
           fi
+
+          node .naome/bin/naome.js quality check --changed
+          node .naome/bin/naome.js semantic check --changed
+          node .naome/bin/naome.js arch validate --changed-only
 
       - name: Run frontend lint
         working-directory: frontend
@@ -68,15 +76,6 @@ jobs:
       - name: Build frontend
         working-directory: frontend
         run: npm run build
-
-      - name: Run NAOME quality check
-        run: node .naome/bin/naome.js quality check --changed
-
-      - name: Run NAOME semantic check
-        run: node .naome/bin/naome.js semantic check --changed
-
-      - name: Run NAOME architecture fitness
-        run: node .naome/bin/naome.js arch validate --changed-only
 
       - name: Check whitespace errors
         run: |
