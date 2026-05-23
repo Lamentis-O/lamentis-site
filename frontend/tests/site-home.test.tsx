@@ -22,8 +22,8 @@ describe("Homepage shell", () => {
       }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("link", { name: contentByLocale.de.footer.brand }),
-    ).toHaveAttribute("href", "/de");
+      screen.queryByRole("link", { name: contentByLocale.de.footer.brand }),
+    ).not.toBeInTheDocument();
     expect(
       screen.getByRole("link", {
         name: contentByLocale.de.footer.legal.links[2].label,
@@ -43,6 +43,9 @@ describe("Site navigation", () => {
     expect(
       screen.getByRole("navigation", { name: "Product navigation" }),
     ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Open product navigation" }),
+    ).toHaveAttribute("aria-expanded", "false");
     expect(screen.getByRole("link", { name: "Naome ASOS" })).toHaveAttribute(
       "href",
       "/en/naome",

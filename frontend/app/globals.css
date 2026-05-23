@@ -365,14 +365,17 @@ body {
   .ds-product-page {
     display: flex;
     flex: 1 0 auto;
-    align-items: flex-start;
-    justify-content: flex-start;
+    align-items: center;
+    justify-content: center;
     min-height: clamp(34rem, 58vh, 62rem);
-    padding: clamp(7.2rem, 12vh, 12rem) 0 var(--ds-space-16);
-    text-align: left;
+    padding: var(--ds-space-16) 0;
+    text-align: center;
   }
 
   .ds-product-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     min-width: 0;
   }
 
