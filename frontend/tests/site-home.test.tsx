@@ -37,11 +37,11 @@ describe("Homepage shell", () => {
 });
 
 describe("Site navigation", () => {
-  it("renders the product navigation with localized product links", () => {
+  it("renders the product navigation with the footer platform links", () => {
     render(<SiteNavigation locale="en" />);
 
     expect(
-      screen.getByRole("navigation", { name: "Primary product navigation" }),
+      screen.getByRole("navigation", { name: "Product navigation" }),
     ).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Naome ASOS" })).toHaveAttribute(
       "href",
@@ -52,7 +52,7 @@ describe("Site navigation", () => {
       "/en/noma",
     );
     expect(
-      screen.getByRole("link", { name: "Nox - Social events" }),
+      screen.getByRole("link", { name: "Nox - Social Events" }),
     ).toHaveAttribute("href", "/en/nox");
   });
 });

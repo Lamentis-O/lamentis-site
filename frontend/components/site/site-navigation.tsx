@@ -1,34 +1,32 @@
-import { SegmentedNavigation } from "../ui/segmented-navigation";
-import type { Locale } from "@/domain/site/content";
+import Link from "next/link";
+import { contentByLocale, type Locale } from "../../domain/site/content";
 
 type SiteNavigationProps = {
   locale: Locale;
 };
 
-const productNavigationItems = [
-  {
-    slug: "naome",
-    label: "Naome ASOS",
-    mobileLabel: "Naome",
-  },
-  {
-    slug: "noma",
-    label: "Noma Tasks",
-    mobileLabel: "Noma",
-  },
-  {
-    slug: "nox",
-    label: "Nox - Social events",
-    mobileLabel: "Nox",
-  },
-] as const;
-
 export function SiteNavigation({ locale }: SiteNavigationProps) {
-  const items = productNavigationItems.map((item) => ({
-    href: `/${locale}/${item.slug}`,
-    label: item.label,
-    mobileLabel: item.mobileLabel,
-  }));
+  const links = contentByLocale[locale].footer.platform.links;
 
-  return <SegmentedNavigation aria-label="Primary product navigation" items={items} />;
+  return (
+    <nav className="ds-site-navigation" aria-label="Product navigation">
+      <div className="ds-page-boundary ds-site-navigation__inner">
+        {links.map((link) => {
+          if (!link.href) {
+            return null;
+          }
+
+          return (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="ds-site-navigation__link"
+            >
+              {link.label}
+            </Link>
+          );
+        })}
+      </div>
+    </nav>
+  );
 }
