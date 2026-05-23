@@ -393,19 +393,10 @@ body {
 
   .ds-product-title--naome {
     background-image:
-      linear-gradient(
-        145deg,
-        color-mix(in srgb, var(--ds-color-primary-background) 38%, transparent)
-          0%,
-        transparent 24%,
-        transparent 70%,
-        color-mix(in srgb, var(--ds-color-primary-background) 26%, transparent)
-          100%
-      ),
       url("/assets/images/naome-texture-20260523.webp"),
       var(--ds-image-placeholder-naome-texture);
     background-position: center;
-    background-size: cover, cover, cover;
+    background-size: cover, cover;
   }
 
   .ds-product-subline {
