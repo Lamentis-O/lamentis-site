@@ -59,6 +59,7 @@
     "SECURITY.md",
     "AGENTS.md",
     "package.json",
+    "naome.arch.yaml",
     "Cargo.toml",
     "pyproject.toml",
     "go.mod",
@@ -67,7 +68,22 @@
     ".gitignore",
     ".naomeignore"
   ],
-  "directoryRoleRules": [],
+  "directoryRoleRules": [
+    {
+      "id": "frontend-package-mix",
+      "paths": [
+        "frontend/**"
+      ],
+      "allowedRoles": [
+        "source",
+        "config",
+        "docs",
+        "test",
+        "unknown"
+      ],
+      "maxRoles": 5
+    }
+  ],
   "layerRules": [],
   "ignoredPaths": [
     ".git/**",

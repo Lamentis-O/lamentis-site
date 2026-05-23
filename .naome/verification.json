@@ -94,6 +94,21 @@
       "lastVerified": "2026-05-23"
     },
     {
+      "id": "repository-frontend-test-unit",
+      "command": "cd frontend && npm run test",
+      "cwd": ".",
+      "purpose": "Run frontend unit tests (Vitest).",
+      "cost": "fast",
+      "source": "Repository package scripts",
+      "evidence": [
+        "frontend/package.json",
+        "frontend/vitest.config.ts",
+        "frontend/tests/setup.ts",
+        "frontend/tests/page.test.tsx"
+      ],
+      "lastVerified": "2026-05-23"
+    },
+    {
       "id": "ui-style-check",
       "command": "node .naome/bin/naome.js ui check --changed --json",
       "cwd": ".",
@@ -136,6 +151,7 @@
         "repository-semantic-check",
         "repository-frontend-lint",
         "repository-frontend-build",
+        "repository-frontend-test-unit",
         "ui-style-check",
         "architecture-fitness-check"
       ]
@@ -169,6 +185,7 @@
       "description": "Frontend source and deployment-relevant config.",
       "paths": [
         "frontend/app/**",
+        "frontend/components/**",
         "frontend/public/**",
         "frontend/package.json",
         "frontend/next.config.ts",
@@ -180,6 +197,7 @@
       "requiredChecks": [
         "repository-frontend-lint",
         "repository-frontend-build",
+        "repository-frontend-test-unit",
         "repository-quality-check",
         "repository-semantic-check",
         "diff-check"
@@ -201,6 +219,10 @@
     },
     {
       "checkId": "repository-frontend-build",
+      "requiredWhen": "Before release for any frontend source or config change."
+    },
+    {
+      "checkId": "repository-frontend-test-unit",
       "requiredWhen": "Before release for any frontend source or config change."
     }
   ]

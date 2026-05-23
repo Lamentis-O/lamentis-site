@@ -5,9 +5,11 @@ Status: Initialized
 ## Observed Structure
 
 - `frontend/` is the application package root.
-- Source currently lives under `frontend/app/**` with:
+- Source currently lives under `frontend/app/**` and reusable UI primitives are in
+  `frontend/components/**`, starting with:
   - `frontend/app/layout.tsx`
   - `frontend/app/page.tsx`
+  - `frontend/components/site/production-state-panel.tsx`
 - NAOME and repository policy remain in `.naome/` and `docs/naome/`.
 - Custom architecture policy exists in `naome.arch.yaml`, scoped to the frontend package and `frontend` config files.
 
