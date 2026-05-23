@@ -70,7 +70,7 @@ export const contentByLocale: Record<Locale, HomepageCopy> = {
         links: [
           {
             label: "About Me",
-            href: "/en/about-me",
+            href: "/en/about/elias-papavlassopoulos",
             icon: "about",
           },
           {
@@ -131,7 +131,7 @@ export const contentByLocale: Record<Locale, HomepageCopy> = {
         links: [
           {
             label: "Über mich",
-            href: "/de/about-me",
+            href: "/de/about/elias-papavlassopoulos",
             icon: "about",
           },
           {
