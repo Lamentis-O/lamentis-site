@@ -391,6 +391,14 @@ body {
   }
 
   .ds-site-footer__link,
+  .ds-site-footer__link-button,
+  .ds-site-footer__disabled-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .ds-site-footer__link,
   .ds-site-footer__link-button {
     text-decoration: none;
     transition: color 150ms ease;
@@ -419,6 +427,7 @@ body {
   }
 
   .ds-site-footer__link-avatar {
+    display: block;
     border-radius: 9999px;
     object-fit: cover;
     width: 1.6rem;
