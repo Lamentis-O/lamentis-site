@@ -4,7 +4,7 @@ import {
   contentByLocale,
   isSupportedLocale,
   supportedLocales,
-} from "@/lib/home-content";
+} from "@/domain/site/content";
 
 export function generateStaticParams() {
   return supportedLocales.map((locale) => ({ locale }));

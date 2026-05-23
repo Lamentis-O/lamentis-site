@@ -1,4 +1,4 @@
-import type { HomepageCopy } from "@/lib/home-content";
+import type { HomepageCopy } from "@/domain/site/content";
 
 type SiteHomeProps = {
   copy: HomepageCopy;

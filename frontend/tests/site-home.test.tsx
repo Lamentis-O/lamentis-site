@@ -1,12 +1,16 @@
 import { describe, expect, it } from "vitest";
 import { render, screen } from "@testing-library/react";
-import { SiteFooter } from "../components/site/site-footer";
-import { SiteHome } from "../components/site/site-home";
-import { contentByLocale } from "../lib/home-content";
+import { SiteFooter, SiteHome } from "../components";
+import { contentByLocale } from "../domain/site/content";
 
 describe("Homepage shell", () => {
   it("renders the German homepage as an empty shell with localized footer", () => {
-    render(<SiteHome locale="de" copy={contentByLocale.de} />);
+    render(
+      <>
+        <SiteHome copy={contentByLocale.de} />
+        <SiteFooter locale="de" content={contentByLocale.de.footer} />
+      </>,
+    );
 
     expect(screen.queryByRole("heading", { level: 1 })).not.toBeInTheDocument();
     expect(
@@ -20,9 +24,9 @@ describe("Homepage shell", () => {
     ).toHaveAttribute("href", "/de");
     expect(
       screen.getByRole("link", {
-        name: contentByLocale.de.footer.legal.links[0].label,
+        name: contentByLocale.de.footer.legal.links[2].label,
       }),
-    ).toHaveAttribute("href", "/de/privacy-policy");
+    ).toHaveAttribute("href", "/de/legal-notice");
     expect(screen.queryByText("IN PRODUCTION")).not.toBeInTheDocument();
     expect(
       screen.queryByText("One place for plans, people, and events."),
@@ -59,14 +63,14 @@ describe("Footer", () => {
       }),
     ).toBeInTheDocument();
 
-    expect(screen.getByRole("button", { name: "Log in" })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Sign up" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Privacy Policy" })).toHaveAttribute(
-      "href",
-      "/en/privacy-policy",
+    expect(screen.getByText("Log in")).toHaveAttribute("aria-disabled", "true");
+    expect(screen.getByText("Sign up")).toHaveAttribute("aria-disabled", "true");
+    expect(screen.getByText("Privacy Policy")).toHaveAttribute(
+      "aria-disabled",
+      "true",
     );
     expect(
-      screen.getByRole("link", { name: "Instagram" }),
+      screen.getByRole("link", { name: "GitHub" }),
     ).toHaveAttribute("target", "_blank");
 
     expect(screen.getByRole("option", { name: "English" })).toHaveAttribute("href", "/en");

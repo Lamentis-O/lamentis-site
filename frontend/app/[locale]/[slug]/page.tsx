@@ -1,11 +1,11 @@
 import { notFound } from "next/navigation";
 import { type Metadata } from "next";
 import {
-  defaultSiteIcons,
   isSupportedLocale,
   type Locale,
   supportedLocales,
-} from "@/lib/home-content";
+} from "@/domain/site/content";
+import { createLocalizedMetadata } from "@/domain/site/seo";
 
 const emptyPageSlugs = ["naome", "nox", "noma", "legal-notice"] as const;
 
@@ -26,6 +26,23 @@ const emptyPageLabels: Record<Locale, Record<EmptyPageSlug, string>> = {
   },
 };
 
+const emptyPageDescriptions: Record<Locale, Record<EmptyPageSlug, string>> = {
+  en: {
+    naome: "Naome project page on Lamentis.",
+    nox: "Nox project page on Lamentis.",
+    noma: "Noma project page on Lamentis.",
+    "legal-notice":
+      "Legal notice and responsible person information for Lamentis.",
+  },
+  de: {
+    naome: "Naome-Projektseite auf Lamentis.",
+    nox: "Nox-Projektseite auf Lamentis.",
+    noma: "Noma-Projektseite auf Lamentis.",
+    "legal-notice":
+      "Impressum und Verantwortlichenangaben fuer Lamentis.",
+  },
+};
+
 function isEmptyPageSlug(value: string): value is EmptyPageSlug {
   return (emptyPageSlugs as readonly string[]).includes(value);
 }
@@ -39,17 +56,23 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ locale: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
-  const { locale } = await params;
+  const { locale, slug } = await params;
 
-  if (!isSupportedLocale(locale)) {
+  if (!isSupportedLocale(locale) || !isEmptyPageSlug(slug)) {
     notFound();
   }
 
-  return {
-    icons: defaultSiteIcons,
-  };
+  const title = emptyPageLabels[locale][slug];
+
+  return createLocalizedMetadata({
+    locale,
+    path: slug,
+    title,
+    description: emptyPageDescriptions[locale][slug],
+    noIndex: slug !== "legal-notice",
+  });
 }
 
 export default async function EmptyLocalizedPage({

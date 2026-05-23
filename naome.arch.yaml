@@ -4,6 +4,7 @@ layers:
     paths:
       - "frontend/app/**"
       - "frontend/components/**"
+      - "frontend/domain/**"
       - "frontend/public/**"
       - "frontend/vercel.json"
       - "frontend/package.json"
@@ -17,6 +18,7 @@ contexts:
     paths:
       - "frontend/app/**"
       - "frontend/components/**"
+      - "frontend/domain/**"
       - "frontend/public/**"
       - "frontend/package.json"
       - "frontend/next.config.ts"
@@ -28,7 +30,9 @@ contexts:
       - "frontend/app/page.tsx"
       - "frontend/app/layout.tsx"
       - "frontend/components/index.ts"
-      - "frontend/components/site/production-state-panel.tsx"
+      - "frontend/domain/site/content.ts"
+      - "frontend/domain/site/seo.ts"
+      - "frontend/domain/site/assets.ts"
       - "frontend/package.json"
       - "frontend/README.md"
 

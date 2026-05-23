@@ -9,7 +9,10 @@ Status: Initialized
   `frontend/components/**`, starting with:
   - `frontend/app/layout.tsx`
   - `frontend/app/page.tsx`
-  - `frontend/components/site/production-state-panel.tsx`
+- Shared content and SEO policy live in `frontend/domain/site/**`, including:
+  - `frontend/domain/site/content.ts`
+  - `frontend/domain/site/seo.ts`
+  - `frontend/domain/site/assets.ts`
 - NAOME and repository policy remain in `.naome/` and `docs/naome/`.
 - Custom architecture policy exists in `naome.arch.yaml`, scoped to the frontend package and `frontend` config files.
 
@@ -23,6 +26,8 @@ Status: Initialized
 
 - Frontend module is currently single-package (`frontend`), no backend module detected yet.
 - No additional bounded context (API/service layer, CMS, etc.) exists yet.
+- SEO/GEO metadata belongs in `frontend/domain/site/seo.ts`; route files should call
+  shared helpers and only supply route-specific copy, slugs, and structured data.
 
 ## Dependency Rules
 

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { resolveLocaleFromAcceptLanguage } from "../lib/home-content";
+import { resolveLocaleFromAcceptLanguage } from "../domain/site/content";
 
 describe("Locale detection", () => {
   it("prefers German when Accept-Language contains de", () => {

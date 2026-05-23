@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { siteName, siteUrl } from "@/domain/site/seo";
 import "./globals.css";
 
 const inter = Inter({
@@ -8,8 +9,18 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Lamentis",
-  description: "Lamentis Frontend on Next.js",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: siteName,
+    template: `%s | ${siteName}`,
+  },
+  applicationName: siteName,
+  description:
+    "Lamentis is a personal portfolio and project overview for Elias Papavlassopoulos.",
+  authors: [{ name: "Elias Papavlassopoulos" }],
+  creator: "Elias Papavlassopoulos",
+  publisher: siteName,
+  category: "personal portfolio",
 };
 
 export default function RootLayout({

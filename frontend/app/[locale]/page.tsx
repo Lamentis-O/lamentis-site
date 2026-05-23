@@ -1,12 +1,13 @@
 import { type Metadata } from "next";
 import { notFound } from "next/navigation";
+import { JsonLd } from "@/components/site/json-ld";
 import { SiteHome } from "@/components/site/site-home";
 import {
-  defaultSiteIcons,
   contentByLocale,
   isSupportedLocale,
   supportedLocales,
-} from "@/lib/home-content";
+} from "@/domain/site/content";
+import { homeMetadata, organizationJsonLd } from "@/domain/site/seo";
 
 export function generateStaticParams() {
   return supportedLocales.map((locale) => ({ locale }));
@@ -23,11 +24,7 @@ export async function generateMetadata({
     notFound();
   }
 
-  return {
-    icons: defaultSiteIcons,
-    title: contentByLocale[locale].metaTitle,
-    description: contentByLocale[locale].metaDescription,
-  };
+  return homeMetadata(locale);
 }
 
 export default async function LocalizedHomePage({
@@ -41,5 +38,10 @@ export default async function LocalizedHomePage({
     notFound();
   }
 
-  return <SiteHome copy={contentByLocale[locale]} />;
+  return (
+    <>
+      <SiteHome copy={contentByLocale[locale]} />
+      <JsonLd data={organizationJsonLd(locale)} />
+    </>
+  );
 }
