@@ -26,7 +26,15 @@ export function generateStaticParams() {
 
 export function generateMetadata(): Metadata {
   return {
-    icons: "/assets/images/about-favicon-circle.svg",
+    icons: {
+      icon: [
+        {
+          url: "/assets/images/about-favicon-circle.svg",
+          type: "image/svg+xml",
+        },
+      ],
+      shortcut: "/assets/images/about-favicon-circle.svg",
+    },
   };
 }
 
