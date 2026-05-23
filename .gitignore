@@ -1,0 +1,9 @@
+# Vercel local auth/config
+.vercel
+.vercel-temp
+# NAOME generated artifacts
+.naome/architecture-graph.json
+frontend/package-lock.json
+
+# local env & IDE
+.DS_Store
