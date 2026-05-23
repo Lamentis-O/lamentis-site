@@ -33,16 +33,14 @@
     max-width: 100%;
     align-items: center;
     gap: var(--ds-space-1);
-    border-radius: var(--ds-radius-pill);
-    background: var(--ds-color-secondary-background);
-    padding: var(--ds-space-1);
-    overflow: hidden;
+    padding: 0;
+    overflow: visible;
   }
 
   .ds-segmented-navigation__indicator {
     position: absolute;
-    top: var(--ds-space-1);
-    bottom: var(--ds-space-1);
+    top: 0;
+    bottom: 0;
     left: 0;
     z-index: 0;
     border-radius: var(--ds-radius-pill);
@@ -103,12 +101,12 @@
 
     .ds-segmented-navigation {
       gap: 0.2rem;
-      padding: 0.3rem;
+      padding: 0;
     }
 
     .ds-segmented-navigation__indicator {
-      top: 0.3rem;
-      bottom: 0.3rem;
+      top: 0;
+      bottom: 0;
     }
 
     .ds-segmented-navigation__item {
