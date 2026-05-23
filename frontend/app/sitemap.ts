@@ -4,6 +4,7 @@ import { localizedUrl } from "@/domain/site/seo";
 
 const indexedPaths = [
   "",
+  "naome",
   "about/elias-papavlassopoulos",
   "legal-notice",
 ] as const;

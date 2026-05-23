@@ -82,7 +82,7 @@ export async function generateMetadata({
     path: slug,
     title,
     description: emptyPageDescriptions[locale][slug],
-    noIndex: slug !== "legal-notice",
+    noIndex: slug !== "legal-notice" && slug !== "naome",
   });
 }
 

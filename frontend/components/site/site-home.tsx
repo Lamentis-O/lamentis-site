@@ -10,14 +10,13 @@ export function SiteHome({ copy }: SiteHomeProps) {
     <main className="ds-home-empty ds-home-loader-preview" aria-label={copy.metaTitle}>
       <div className="ds-home-loader-preview__content">
         <Image
-          src="/assets/images/lamentis-loader-logo-20260523.gif"
+          src="/assets/images/lamentis-loader-logo-20260523.webp"
           alt=""
           className="ds-home-loader-preview__image"
           width="256"
           height="256"
-          unoptimized
         />
-        <p className="ds-home-loader-preview__label">Coming soon</p>
+        <p className="ds-home-loader-preview__label">{copy.statusLabel}</p>
       </div>
     </main>
   );

@@ -13,6 +13,8 @@ describe("Homepage shell", () => {
     );
 
     expect(screen.queryByRole("heading", { level: 1 })).not.toBeInTheDocument();
+    expect(screen.getByText(contentByLocale.de.statusLabel)).toBeInTheDocument();
+    expect(screen.queryByText(contentByLocale.en.statusLabel)).not.toBeInTheDocument();
     expect(
       screen.getByRole("heading", {
         level: 2,
