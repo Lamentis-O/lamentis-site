@@ -1,0 +1,89 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - master
+      - "task/**"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CI: true
+  NEXT_TELEMETRY_DISABLED: 1
+
+jobs:
+  verify:
+    name: Verify repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package.json
+
+      - name: Install frontend dependencies
+        working-directory: frontend
+        run: npm install --no-audit
+
+      - name: Audit production dependency risk
+        working-directory: frontend
+        run: npm audit --audit-level=high
+
+      - name: Validate NAOME harness
+        run: node .naome/bin/check-harness-health.js
+
+      - name: Validate NAOME task state
+        run: |
+          if [[ -f .naome/task-state.json ]]; then
+            node .naome/bin/check-task-state.js
+          else
+            node .naome/bin/naome.js task status --json
+          fi
+
+      - name: Run frontend lint
+        working-directory: frontend
+        run: npm run lint
+
+      - name: Run frontend unit tests
+        working-directory: frontend
+        run: npm run test
+
+      - name: Build frontend
+        working-directory: frontend
+        run: npm run build
+
+      - name: Run NAOME quality check
+        run: node .naome/bin/naome.js quality check --changed
+
+      - name: Run NAOME semantic check
+        run: node .naome/bin/naome.js semantic check --changed
+
+      - name: Run NAOME architecture fitness
+        run: node .naome/bin/naome.js arch validate --changed-only
+
+      - name: Check whitespace errors
+        run: |
+          if [[ "$GITHUB_EVENT_NAME" == "pull_request" ]]; then
+            git diff --check "origin/${GITHUB_BASE_REF}...HEAD"
+          elif git rev-parse HEAD^ >/dev/null 2>&1; then
+            git diff-tree --check --no-commit-id --pretty=on -r HEAD
+          else
+            git diff --check HEAD
+          fi
