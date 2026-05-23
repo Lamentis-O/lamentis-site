@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { isSupportedLocale, type Locale, supportedLocales } from "@/lib/home-content";
 
 const aboutPageSlugs = ["elias-papavlassopoulos"] as const;
@@ -21,6 +22,18 @@ export function generateStaticParams() {
   return supportedLocales.flatMap((locale) =>
     aboutPageSlugs.map((slug) => ({ locale, slug })),
   );
+}
+
+export function generateMetadata(): Metadata {
+  return {
+    icons: {
+      icon: {
+        url: "/assets/images/about-favicon-circle.svg",
+        type: "image/svg+xml",
+      },
+      shortcut: "/assets/images/about-favicon-circle.svg",
+    },
+  };
 }
 
 export default async function AboutMePage({

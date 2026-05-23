@@ -9,6 +9,7 @@ export type FooterSectionLink = {
   action?: boolean;
   external?: boolean;
   icon?: "github" | "linkedin" | "about";
+  iconSrc?: string;
 };
 
 export type FooterSection = {
@@ -72,6 +73,7 @@ export const contentByLocale: Record<Locale, HomepageCopy> = {
             label: "About Me",
             href: "/en/about/elias-papavlassopoulos",
             icon: "about",
+            iconSrc: "/assets/images/elias-portrait.JPG",
           },
           {
             label: "GitHub",
@@ -133,6 +135,7 @@ export const contentByLocale: Record<Locale, HomepageCopy> = {
             label: "Über mich",
             href: "/de/about/elias-papavlassopoulos",
             icon: "about",
+            iconSrc: "/assets/images/elias-portrait.JPG",
           },
           {
             label: "GitHub",

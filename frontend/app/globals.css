@@ -412,6 +412,19 @@ body {
     color: var(--ds-color-primary-text);
   }
 
+  .ds-site-footer__link-content {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .ds-site-footer__link-avatar {
+    border-radius: 9999px;
+    object-fit: cover;
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+
   .ds-site-footer__disabled-link {
     opacity: 0.48;
     cursor: default;

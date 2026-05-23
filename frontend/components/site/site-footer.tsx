@@ -17,7 +17,17 @@ type SiteFooterProps = {
 
 function renderFooterLink(link: FooterSectionLink, index: number, className: string) {
   const icon =
-    link.icon === "github"
+    link.iconSrc
+      ? (
+        <Image
+          src={link.iconSrc}
+          alt={`${link.label} profile`}
+          width={16}
+          height={16}
+          className="ds-site-footer__link-avatar"
+        />
+      )
+      : link.icon === "github"
       ? (
         <svg
           aria-hidden="true"
@@ -102,13 +112,7 @@ function renderFooterLink(link: FooterSectionLink, index: number, className: str
       rel={link.external ? "noopener noreferrer" : undefined}
     >
       {icon ? (
-        <span
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "0.5rem",
-          }}
-        >
+        <span className="ds-site-footer__link-content">
           {icon}
           <span>{link.label}</span>
         </span>
