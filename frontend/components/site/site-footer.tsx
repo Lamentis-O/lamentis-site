@@ -223,19 +223,6 @@ function LanguageButton({
 export function SiteFooter({ locale, content }: SiteFooterProps) {
   return (
     <footer className="ds-site-footer">
-      <div className="ds-page-boundary ds-site-footer__brand-row">
-        <a href={`/${locale}`} className="ds-site-footer__brand" aria-label="Lamentis">
-          <Image
-            src="/assets/images/app-logo-20260424.png"
-            alt=""
-            width={44}
-            height={44}
-            className="ds-site-footer__brand-logo"
-          />
-          <span>{content.brand}</span>
-        </a>
-      </div>
-
       <div className="ds-page-boundary ds-site-footer__grid">
         <FooterSectionBlock section={content.platform} />
         <FooterSectionBlock section={content.account} />

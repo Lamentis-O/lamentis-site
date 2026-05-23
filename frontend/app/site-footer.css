@@ -3,33 +3,14 @@
     width: 100%;
     padding: clamp(5.6rem, 7vw, 8.8rem) 0
       calc(env(safe-area-inset-bottom) + 3.2rem);
-    border-top: 1px solid var(--ds-color-line);
     background: var(--ds-color-primary-background);
     box-sizing: border-box;
-  }
-
-  .ds-site-footer__brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 1rem;
-    color: var(--ds-color-primary-text);
-    font-size: 1.6rem;
-    font-weight: 900;
-    text-decoration: none;
-  }
-
-  .ds-site-footer__brand-logo {
-    width: 2.8rem;
-    height: 2.8rem;
-    object-fit: contain;
-    filter: var(--ds-site-logo-filter);
   }
 
   .ds-site-footer__grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: clamp(3.2rem, 6vw, 8rem);
-    margin-top: clamp(4.8rem, 7vw, 8.8rem);
   }
 
   .ds-site-footer__col {
@@ -41,19 +22,25 @@
 
   .ds-site-footer__col h2 {
     margin: 0 0 0.8rem;
-    font-size: 1.45rem;
-    font-weight: 900;
-    color: var(--ds-color-primary-text);
+    font-size: 1.35rem;
+    font-weight: var(--ds-font-weight-medium);
+    color: var(--ds-color-secondary-text);
     line-height: 1.2;
   }
 
   .ds-site-footer__link,
   .ds-site-footer__link-button,
-  .ds-site-footer__disabled-link,
+  .ds-site-footer__disabled-link {
+    color: var(--ds-color-primary-text);
+    font-size: 1.35rem;
+    font-weight: var(--ds-font-weight-medium);
+    line-height: 1.2;
+  }
+
   .ds-site-footer__bottom {
     color: var(--ds-color-muted);
     font-size: 1.45rem;
-    font-weight: 800;
+    font-weight: var(--ds-font-weight-medium);
     line-height: 1.2;
   }
 
@@ -84,7 +71,7 @@
 
   .ds-site-footer__link:hover,
   .ds-site-footer__link-button:hover {
-    color: var(--ds-color-primary-text);
+    color: var(--ds-color-secondary-text);
   }
 
   .ds-site-footer__link-content {
@@ -126,16 +113,6 @@
     padding-top: 2.4rem;
   }
 
-  .ds-site-footer__bottom::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: var(--ds-color-line);
-  }
-
   .ds-site-footer__bottom-inner {
     display: flex;
     align-items: center;
@@ -155,8 +132,9 @@
     }
 
     .ds-site-footer__bottom-inner {
-      align-items: flex-start;
+      align-items: center;
       flex-direction: column;
+      text-align: center;
     }
   }
 

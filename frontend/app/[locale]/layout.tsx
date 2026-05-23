@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { SiteFooter } from "@/components/site/site-footer";
+import { SiteNavigation } from "@/components/site/site-navigation";
 import {
   contentByLocale,
   isSupportedLocale,
@@ -25,9 +26,9 @@ export default async function LocaleLayout({
 
   return (
     <>
+      <SiteNavigation locale={locale} />
       {children}
       <SiteFooter locale={locale} content={contentByLocale[locale].footer} />
     </>
   );
 }
-

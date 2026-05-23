@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { render, screen } from "@testing-library/react";
-import { SiteFooter, SiteHome } from "../components";
+import { SiteFooter, SiteHome, SiteNavigation } from "../components";
 import { contentByLocale } from "../domain/site/content";
 
 describe("Homepage shell", () => {
@@ -22,8 +22,8 @@ describe("Homepage shell", () => {
       }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("link", { name: contentByLocale.de.footer.brand }),
-    ).toHaveAttribute("href", "/de");
+      screen.queryByRole("link", { name: contentByLocale.de.footer.brand }),
+    ).not.toBeInTheDocument();
     expect(
       screen.getByRole("link", {
         name: contentByLocale.de.footer.legal.links[2].label,
@@ -33,6 +33,30 @@ describe("Homepage shell", () => {
     expect(
       screen.queryByText("One place for plans, people, and events."),
     ).not.toBeInTheDocument();
+  });
+});
+
+describe("Site navigation", () => {
+  it("renders the product navigation with the footer platform links", () => {
+    render(<SiteNavigation locale="en" />);
+
+    expect(
+      screen.getByRole("navigation", { name: "Product navigation" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Open product navigation" }),
+    ).toHaveAttribute("aria-expanded", "false");
+    expect(screen.getByRole("link", { name: "Naome ASOS" })).toHaveAttribute(
+      "href",
+      "/en/naome",
+    );
+    expect(screen.getByRole("link", { name: "Noma Tasks" })).toHaveAttribute(
+      "href",
+      "/en/noma",
+    );
+    expect(
+      screen.getByRole("link", { name: "Nox - Social Events" }),
+    ).toHaveAttribute("href", "/en/nox");
   });
 });
 
