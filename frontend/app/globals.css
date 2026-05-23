@@ -423,15 +423,15 @@ body {
   .ds-site-footer__link-content {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.9rem;
   }
 
   .ds-site-footer__link-avatar {
     display: block;
     border-radius: 9999px;
     object-fit: cover;
-    width: 1.6rem;
-    height: 1.6rem;
+    width: 2rem;
+    height: 2rem;
   }
 
   .ds-site-footer__disabled-link {

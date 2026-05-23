@@ -24,8 +24,8 @@ function renderFooterLink(link: FooterSectionLink, index: number, className: str
           src={link.iconSrc}
           alt={`${link.label} profile`}
           className="ds-site-footer__link-avatar"
-          width={16}
-          height={16}
+          width={20}
+          height={20}
         />
       )
       : link.icon === "github"
