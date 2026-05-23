@@ -1,25 +1,29 @@
 @layer components {
   .ds-floating-navigation {
     position: fixed;
-    top: clamp(var(--ds-space-2), 2vw, var(--ds-space-4));
-    left: 50%;
+    top: 0;
+    left: 0;
     z-index: 50;
-    width: fit-content;
-    max-width: calc(100vw - (2 * var(--ds-space-3)));
+    display: flex;
+    width: 100%;
+    max-width: none;
+    justify-content: center;
     border: 0;
-    border-radius: var(--ds-radius-pill);
-    padding: var(--ds-space-2);
-    background: color-mix(
-      in srgb,
-      var(--ds-color-secondary-background) 78%,
-      transparent
-    );
-    box-shadow:
-      0 1.8rem 4.8rem rgb(0 0 0 / 32%),
-      0 0.6rem 1.6rem rgb(0 0 0 / 18%);
-    backdrop-filter: blur(1.8rem) saturate(1.08);
-    -webkit-backdrop-filter: blur(1.8rem) saturate(1.08);
-    transform: translateX(-50%);
+    border-radius: 0;
+    padding: var(--ds-space-3) var(--ds-web-gutter);
+    background: var(--ds-color-primary-background);
+    box-shadow: none;
+    transform: none;
+  }
+
+  .ds-floating-navigation::after {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    background: var(--ds-color-line);
+    content: "";
   }
 
   .ds-segmented-navigation {
@@ -58,13 +62,13 @@
     position: relative;
     z-index: 1;
     display: inline-flex;
-    min-height: 5.4rem;
+    min-height: 3.9rem;
     align-items: center;
     justify-content: center;
     border-radius: var(--ds-radius-pill);
-    padding: 0 var(--ds-space-12);
+    padding: 0 1.9rem;
     color: var(--ds-color-muted);
-    font-size: 1.95rem;
+    font-size: 1.45rem;
     font-weight: var(--ds-font-weight-bold);
     line-height: 1;
     text-decoration: none;
@@ -94,9 +98,7 @@
 
   @media (max-width: 640px) {
     .ds-floating-navigation {
-      top: var(--ds-space-2);
-      max-width: calc(100vw - (2 * var(--ds-space-2)));
-      padding: 0.3rem;
+      padding: var(--ds-space-2) var(--ds-space-2);
     }
 
     .ds-segmented-navigation {
@@ -110,9 +112,9 @@
     }
 
     .ds-segmented-navigation__item {
-      min-height: 4.4rem;
-      padding: 0 2.4rem;
-      font-size: 1.75rem;
+      min-height: 3.6rem;
+      padding: 0 1.5rem;
+      font-size: 1.45rem;
     }
 
     .ds-segmented-navigation__label--desktop {
