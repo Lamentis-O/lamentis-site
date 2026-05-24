@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import { Covered_By_Your_Grace, Inter } from "next/font/google";
+import {
+  Cousine,
+  Covered_By_Your_Grace,
+  Inter,
+  Noto_Serif_JP,
+} from "next/font/google";
 import { siteName, siteUrl } from "@/domain/site/seo";
 import "./globals.css";
 
@@ -12,6 +17,18 @@ const productDisplay = Covered_By_Your_Grace({
   variable: "--font-product-display",
   subsets: ["latin"],
   weight: "400",
+});
+
+const productMono = Cousine({
+  variable: "--font-product-mono",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
+
+const productSerifJp = Noto_Serif_JP({
+  variable: "--font-product-serif-jp",
+  subsets: ["latin"],
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
@@ -37,7 +54,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${productDisplay.variable} h-full antialiased`}
+      className={`${inter.variable} ${productDisplay.variable} ${productMono.variable} ${productSerifJp.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

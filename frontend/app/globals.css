@@ -16,6 +16,10 @@
     sans-serif;
   --ds-font-family-product-display: var(--font-product-display),
     var(--ds-font-family);
+  --ds-font-family-product-mono: var(--font-product-mono),
+    "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --ds-font-family-product-serif-jp: var(--font-product-serif-jp),
+    "Times New Roman", Times, serif;
   --ds-font-size-base: 1rem;
   --ds-font-size-sm: 0.875rem;
   --ds-font-size-lg: 1.125rem;
@@ -100,15 +104,15 @@
   );
   --ds-gradient-product-nox: linear-gradient(
     to bottom right,
-    rgb(225, 29, 72) 0%,
-    rgb(190, 24, 93) 48%,
+    rgb(249, 115, 22) 0%,
+    rgb(217, 70, 239) 52%,
     rgb(124, 58, 237) 100%
   );
   --ds-gradient-product-noma: linear-gradient(
     to bottom right,
-    rgb(251, 146, 60) 0%,
-    rgb(249, 115, 22) 44%,
-    rgb(236, 72, 153) 100%
+    rgb(20, 184, 166) 0%,
+    rgb(14, 165, 233) 46%,
+    rgb(139, 92, 246) 100%
   );
   --ds-image-placeholder-naome-texture: url("data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAABQAwCdASogABgAPv1mqVC/paQit+gD8B+JZgCsOUABtFSRgAD+7PyDB/zBP/ST/jdzjP0B+89JmaeFMvlv+1fDjw9DPVLDHS8fs4QAAAA=");
 
@@ -401,6 +405,18 @@ body {
       var(--ds-image-placeholder-naome-texture);
     background-position: center;
     background-size: cover, cover;
+  }
+
+  .ds-product-title--nox {
+    background-image: var(--ds-gradient-product-nox);
+    font-family: var(--ds-font-family-product-mono);
+    letter-spacing: 0;
+  }
+
+  .ds-product-title--noma {
+    background-image: var(--ds-gradient-product-noma);
+    font-family: var(--ds-font-family-product-serif-jp);
+    letter-spacing: 0;
   }
 
   .ds-product-subline {

@@ -10,6 +10,7 @@ import { createLocalizedMetadata } from "@/domain/site/seo";
 const emptyPageSlugs = ["naome", "nox", "noma", "legal-notice"] as const;
 
 type EmptyPageSlug = (typeof emptyPageSlugs)[number];
+type ProductPageSlug = Exclude<EmptyPageSlug, "legal-notice">;
 
 const emptyPageLabels: Record<Locale, Record<EmptyPageSlug, string>> = {
   en: {
@@ -54,8 +55,85 @@ const naomePageCopy: Record<Locale, { tagline: string }> = {
   },
 };
 
+const noxPageCopy: Record<Locale, { tagline: string }> = {
+  en: {
+    tagline:
+      "A mobile platform for nightclubs to host events, sell tickets, and understand their audiences, paired with a social experience that helps guests connect with their circle before, during, and after the night.",
+  },
+  de: {
+    tagline:
+      "Eine mobile Plattform, mit der Nightclubs Events veranstalten, Tickets verkaufen und ihre Zielgruppen besser verstehen, kombiniert mit einem sozialen Erlebnis, das Gäste vor, während und nach der Nacht mit ihrem Freundeskreis verbindet.",
+  },
+};
+
+const nomaPageCopy: Record<Locale, { tagline: string }> = {
+  en: {
+    tagline:
+      "An iOS task manager built around a calm daily flow: capture today's todos, organize them into projects, complete what matters, and let unfinished tasks roll into tomorrow automatically.",
+  },
+  de: {
+    tagline:
+      "Ein iOS-Task-Manager für einen klaren Tagesablauf: heutige Todos erfassen, in Projekte sortieren, Wichtiges abschließen und unerledigte Aufgaben automatisch in den nächsten Tag übernehmen.",
+  },
+};
+
 function isEmptyPageSlug(value: string): value is EmptyPageSlug {
   return (emptyPageSlugs as readonly string[]).includes(value);
+}
+
+function ProductIntroPage({
+  locale,
+  slug,
+  title,
+  titleClassName,
+  tagline,
+}: {
+  locale: Locale;
+  slug: ProductPageSlug;
+  title: string;
+  titleClassName: string;
+  tagline: string;
+}) {
+  const titleId = `${slug}-title`;
+
+  return (
+    <main className="ds-product-page" aria-label={emptyPageLabels[locale][slug]}>
+      <section
+        className="ds-page-boundary ds-product-intro"
+        aria-labelledby={titleId}
+      >
+        <h1 id={titleId} className={`ds-product-title ${titleClassName}`}>
+          {title}
+        </h1>
+        <p className="ds-product-subline">{tagline}</p>
+      </section>
+    </main>
+  );
+}
+
+function getProductPageContent(locale: Locale, slug: ProductPageSlug) {
+  const productPageContent: Record<
+    ProductPageSlug,
+    { title: string; titleClassName: string; tagline: string }
+  > = {
+    naome: {
+      title: "NAOME",
+      titleClassName: "ds-product-title--naome",
+      tagline: naomePageCopy[locale].tagline,
+    },
+    nox: {
+      title: "NOX",
+      titleClassName: "ds-product-title--nox",
+      tagline: noxPageCopy[locale].tagline,
+    },
+    noma: {
+      title: "Noma Tasks",
+      titleClassName: "ds-product-title--noma",
+      tagline: nomaPageCopy[locale].tagline,
+    },
+  };
+
+  return productPageContent[slug];
 }
 
 export function generateStaticParams() {
@@ -97,22 +175,17 @@ export default async function EmptyLocalizedPage({
     notFound();
   }
 
-  if (slug === "naome") {
+  if (slug !== "legal-notice") {
+    const productPageContent = getProductPageContent(locale, slug);
+
     return (
-      <main className="ds-product-page" aria-label={emptyPageLabels[locale][slug]}>
-        <section
-          className="ds-page-boundary ds-product-intro"
-          aria-labelledby="naome-title"
-        >
-          <h1
-            id="naome-title"
-            className="ds-product-title ds-product-title--naome"
-          >
-            NAOME
-          </h1>
-          <p className="ds-product-subline">{naomePageCopy[locale].tagline}</p>
-        </section>
-      </main>
+      <ProductIntroPage
+        locale={locale}
+        slug={slug}
+        title={productPageContent.title}
+        titleClassName={productPageContent.titleClassName}
+        tagline={productPageContent.tagline}
+      />
     );
   }
 
