@@ -219,9 +219,13 @@
     .ds-site-navigation__inner {
       display: flex;
       min-height: 5rem;
-      justify-content: space-between;
-      gap: clamp(1.6rem, 5vw, 3.2rem);
+      justify-content: flex-start;
+      gap: var(--ds-space-3);
       padding: 0.9rem 0;
+    }
+
+    .ds-site-navigation__brand {
+      margin-right: auto;
     }
 
     .ds-site-navigation__links {
@@ -236,6 +240,7 @@
       min-height: 3rem;
       padding: 0 1.1rem;
       font-size: 1.2rem;
+      justify-self: auto;
     }
 
     .ds-site-navigation__github-link svg {

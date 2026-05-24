@@ -11,13 +11,8 @@
   }
 
   .ds-product-page--naome {
-    gap: clamp(var(--ds-space-8), 4vw, var(--ds-space-12));
+    gap: clamp(var(--ds-space-6), 3vw, var(--ds-space-12));
     padding-top: 0;
-  }
-
-  .ds-product-page--naome .ds-product-intro {
-    justify-content: center;
-    min-height: 60vh;
   }
 
   .ds-product-intro {
@@ -72,42 +67,131 @@
     line-height: 1.28;
   }
 
-  .ds-naome-square-grid {
-    display: grid;
-    width: 100%;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: clamp(var(--ds-space-4), 2vw, var(--ds-space-6));
-  }
-
-  .ds-naome-square-grid__item {
+  .ds-naome-hero {
     display: flex;
-    aspect-ratio: 1;
+    width: 100%;
+    min-height: min(48rem, calc(58vh - var(--ds-site-navigation-height)));
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: clamp(var(--ds-space-6), 3vw, var(--ds-space-8));
-    border-radius: clamp(var(--ds-radius-lg), 1.5vw, 1.8rem);
-    background: var(--ds-color-secondary-background);
-    color: var(--ds-color-primary-text);
-    font-size: clamp(1.8rem, 2vw, 2.8rem);
-    font-weight: var(--ds-font-weight-medium);
-    line-height: 1.08;
+    gap: clamp(var(--ds-space-8), 4vw, var(--ds-space-12));
     text-align: center;
   }
 
-  .ds-naome-square-grid__item span {
-    max-width: 12ch;
+  .ds-naome-hero__copy {
+    display: flex;
+    max-width: 56rem;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--ds-space-6);
   }
 
+  .ds-naome-hero__copy h2 {
+    margin: 0;
+    color: var(--ds-color-primary-text);
+    font-size: clamp(4.4rem, 6vw, 7.2rem);
+    font-weight: var(--ds-font-weight-medium);
+    line-height: 0.98;
+  }
 
-  @media (max-width: 900px) {
-    .ds-naome-square-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+  .ds-naome-hero__copy p:not(.ds-naome-hero__eyebrow) {
+    margin: 0;
+    color: var(--ds-color-secondary-text);
+    font-size: clamp(1.8rem, 2vw, 2.2rem);
+    font-weight: var(--ds-font-weight-medium);
+    line-height: 1.35;
+  }
+
+  .ds-naome-hero .ds-product-title {
+    order: -1;
+    font-size: clamp(8.8rem, 15vw, 18rem);
+    text-align: center;
+  }
+
+  .ds-naome-article-layout {
+    display: grid;
+    width: 100%;
+    grid-template-columns: minmax(19rem, 0.36fr) minmax(0, 0.64fr);
+    gap: clamp(var(--ds-space-12), 9vw, 12.8rem);
+    align-items: start;
+    padding-top: clamp(2.5rem, 5vw, 6.4rem);
+    text-align: left;
+  }
+
+  .ds-naome-article-stack {
+    display: grid;
+    gap: clamp(7.2rem, 10vw, 12.8rem);
+  }
+
+  .ds-naome-section-nav {
+    position: sticky;
+    top: calc(var(--ds-site-navigation-height) + var(--ds-space-8));
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+    padding: 0;
+  }
+
+  .ds-naome-section-nav__item {
+    position: relative;
+    border: 0;
+    background: transparent;
+    color: var(--ds-color-tertiary-text);
+    cursor: pointer;
+    font: inherit;
+    font-size: 1.5rem;
+    font-weight: var(--ds-font-weight-medium);
+    line-height: 1.35;
+    padding: 0 0 0 2.6rem;
+    text-align: left;
+    transition: color 160ms ease;
+  }
+
+  .ds-naome-section-nav__item::before {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: var(--ds-radius-pill);
+    background: currentColor;
+    content: "";
+    opacity: 0;
+    transform: translateY(-50%);
+    transition: opacity 160ms ease;
+  }
+
+  .ds-naome-section-nav__item:hover,
+  .ds-naome-section-nav__item--active {
+    color: var(--ds-color-primary-text);
+  }
+
+  .ds-naome-section-nav__item--active::before {
+    opacity: 1;
+  }
+
+  .ds-naome-section-nav__item:focus-visible {
+    outline: 2px solid var(--ds-color-primary-accent);
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 980px) {
+    .ds-product-page--naome {
+      gap: clamp(var(--ds-space-12), 8vw, var(--ds-space-16));
     }
-  }
 
-  @media (max-width: 520px) {
-    .ds-naome-square-grid {
+    .ds-naome-article-layout {
       grid-template-columns: 1fr;
     }
+
+    .ds-naome-hero {
+      min-height: auto;
+      padding: clamp(var(--ds-space-16), 12vw, 8rem) 0 0;
+    }
+
+    .ds-naome-section-nav {
+      display: none;
+    }
   }
+
 }

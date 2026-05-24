@@ -6,6 +6,9 @@ import {
   supportedLocales,
 } from "@/domain/site/content";
 import { createLocalizedMetadata } from "@/domain/site/seo";
+import { ArticleSection } from "@/components";
+import { NaomeFeatureGrid } from "@/components/site/naome-feature-grid";
+import { naomeArticles } from "@/domain/site/naome-page";
 
 const emptyPageSlugs = ["naome", "nox", "noma", "legal-notice"] as const;
 
@@ -60,21 +63,6 @@ const naomePageCopy: Record<Locale, { tagline: string }> = {
   },
 };
 
-const naomeSquareGridLabels: Record<Locale, string[]> = {
-  en: [
-    "What Is an Autopoietic Software OS?",
-    "Naome for Roadmaps",
-    "State of the Art",
-    "How to Use It",
-  ],
-  de: [
-    "Was ist ein autopoietisches Software-OS?",
-    "Naome für Roadmaps",
-    "Stand der Technik",
-    "So nutzt du es",
-  ],
-};
-
 const noxPageCopy: Record<Locale, { tagline: string }> = {
   en: {
     tagline:
@@ -117,6 +105,18 @@ function ProductIntroPage({
   const titleId = `${slug}-title`;
   const productPageClassName = `ds-product-page ds-product-page--${slug}`;
 
+  if (slug === "naome") {
+    return (
+      <NaomeProductPage
+        locale={locale}
+        tagline={tagline}
+        title={title}
+        titleClassName={titleClassName}
+        titleId={titleId}
+      />
+    );
+  }
+
   return (
     <main className={productPageClassName} aria-label={emptyPageLabels[locale][slug]}>
       <section
@@ -128,20 +128,65 @@ function ProductIntroPage({
         </h1>
         <p className="ds-product-subline">{tagline}</p>
       </section>
-      {slug === "naome" ? <NaomeSquareGrid locale={locale} /> : null}
     </main>
   );
 }
 
-function NaomeSquareGrid({ locale }: { locale: Locale }) {
+function NaomeProductPage({
+  locale,
+  tagline,
+  title,
+  titleClassName,
+  titleId,
+}: {
+  locale: Locale;
+  tagline: string;
+  title: string;
+  titleClassName: string;
+  titleId: string;
+}) {
+  const articles = naomeArticles[locale];
+
   return (
-    <section className="ds-page-boundary ds-naome-square-grid" aria-label="Naome feature grid">
-      {naomeSquareGridLabels[locale].map((label) => (
-        <div key={label} className="ds-naome-square-grid__item">
-          <span>{label}</span>
+    <main
+      className="ds-product-page ds-product-page--naome"
+      aria-label={emptyPageLabels[locale].naome}
+    >
+      <section className="ds-page-boundary ds-naome-hero" aria-labelledby={titleId}>
+        <div className="ds-naome-hero__copy">
+          <p>{tagline}</p>
         </div>
+        <h1 id={titleId} className={`ds-product-title ${titleClassName}`}>
+          {title}
+        </h1>
+      </section>
+      <section className="ds-page-boundary ds-naome-article-layout">
+        <NaomeFeatureGrid items={articles} />
+        <NaomeContentSections locale={locale} />
+      </section>
+    </main>
+  );
+}
+
+function NaomeContentSections({ locale }: { locale: Locale }) {
+  return (
+    <div className="ds-naome-article-stack">
+      {naomeArticles[locale].map((article) => (
+        <ArticleSection
+          key={article.id}
+          boundary={false}
+          id={article.id}
+          label={article.label}
+          blocks={[
+            { kind: "headline" as const, text: article.headline },
+            ...article.sections.flatMap((section) => [
+              { kind: "subheadline" as const, text: section.subheadline },
+              { kind: "body" as const, text: section.body },
+            ]),
+          ]}
+        />
       ))}
-    </section>
+    </div>
   );
 }
 

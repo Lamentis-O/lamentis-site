@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "./site-home.css";
 @import "./product-page.css";
+@import "./article-section.css";
 @import "./site-navigation.css";
 @import "./site-footer.css";
 @import "./site-footer-language.css";
@@ -65,11 +66,14 @@
   --ds-transition: all var(--ds-transition-duration) var(--ds-transition-timing);
   --ds-transition-faster: all 120ms ease;
 
-  --ds-color-primary-text-light: rgb(16, 19, 23);
-  --ds-color-primary-text-dark: rgb(248, 246, 247);
+  --ds-color-primary-text-light: rgb(0, 0, 0);
+  --ds-color-primary-text-dark: rgb(255, 255, 255);
 
-  --ds-color-secondary-text-light: rgb(183, 190, 198);
-  --ds-color-secondary-text-dark: rgb(90, 92, 97);
+  --ds-color-secondary-text-light: rgb(51, 51, 51);
+  --ds-color-secondary-text-dark: rgba(255, 255, 255, 0.8);
+
+  --ds-color-tertiary-text-light: rgb(102, 102, 102);
+  --ds-color-tertiary-text-dark: rgba(255, 255, 255, 0.6);
 
   --ds-color-primary-accent-light: rgb(106, 80, 255);
   --ds-color-primary-accent-dark: rgb(95, 67, 221);
@@ -132,8 +136,8 @@
     var(--ds-color-primary-text-dark) 14%,
     transparent
   );
-  --ds-color-muted-light: rgb(92, 95, 102);
-  --ds-color-muted-dark: rgb(141, 142, 148);
+  --ds-color-muted-light: var(--ds-color-tertiary-text-light);
+  --ds-color-muted-dark: var(--ds-color-tertiary-text-dark);
 
   --ds-color-surface-subtle-light: rgb(247, 247, 247);
   --ds-color-surface-subtle-dark: rgb(8, 8, 8);
@@ -150,6 +154,7 @@
 
   --ds-color-primary-text: var(--ds-color-primary-text-light);
   --ds-color-secondary-text: var(--ds-color-secondary-text-light);
+  --ds-color-tertiary-text: var(--ds-color-tertiary-text-light);
   --ds-color-primary-accent: var(--ds-color-primary-accent-light);
   --ds-color-success: var(--ds-color-success-light);
   --ds-color-error: var(--ds-color-error-light);
@@ -201,6 +206,7 @@
 :root:not([data-theme="dark"]) {
   --ds-color-primary-text: var(--ds-color-primary-text-light);
   --ds-color-secondary-text: var(--ds-color-secondary-text-light);
+  --ds-color-tertiary-text: var(--ds-color-tertiary-text-light);
   --ds-color-primary-accent: var(--ds-color-primary-accent-light);
   --ds-color-success: var(--ds-color-success-light);
   --ds-color-error: var(--ds-color-error-light);
@@ -222,6 +228,7 @@
 [data-theme="dark"] {
   --ds-color-primary-text: var(--ds-color-primary-text-dark);
   --ds-color-secondary-text: var(--ds-color-secondary-text-dark);
+  --ds-color-tertiary-text: var(--ds-color-tertiary-text-dark);
   --ds-color-primary-accent: var(--ds-color-primary-accent-dark);
   --ds-color-success: var(--ds-color-success-dark);
   --ds-color-error: var(--ds-color-error-dark);
@@ -244,6 +251,7 @@
   :root:not([data-theme]) {
     --ds-color-primary-text: var(--ds-color-primary-text-dark);
     --ds-color-secondary-text: var(--ds-color-secondary-text-dark);
+    --ds-color-tertiary-text: var(--ds-color-tertiary-text-dark);
     --ds-color-primary-accent: var(--ds-color-primary-accent-dark);
     --ds-color-success: var(--ds-color-success-dark);
     --ds-color-error: var(--ds-color-error-dark);

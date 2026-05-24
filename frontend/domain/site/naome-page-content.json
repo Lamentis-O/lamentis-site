@@ -1,0 +1,176 @@
+{
+  "en": [
+    {
+      "id": "autopoietic-software-os",
+      "label": "Autopoietic Software OS",
+      "headline": "NAOME is an ASOS",
+      "sections": [
+        {
+          "subheadline": "A living operating layer",
+          "body": "NAOME is an Autopoietic Software OS for autonomous, proof-driven software evolution. The term autopoiesis comes from systems theory: it describes systems that continuously reproduce and maintain the organization that makes them viable. Applied to software, the idea points beyond a toolchain. A repository should contain not only code, tests, and tickets, but also the operating conditions that let software work continue safely over long periods of human and agent collaboration."
+        },
+        {
+          "subheadline": "Proof as the system's metabolism",
+          "body": "The proof layer is the first prerequisite. Instead of forcing the foreground agent to run every heavy check directly, NAOME moves toward receipt-based proof: quality, compile, test, and release signals become structured evidence that can be read, invalidated, refreshed, or marked stale. A local background factory can supervise this work, manage workers, isolate runtime state outside the Git diff, and keep expensive verification out of ordinary agent flow."
+        },
+        {
+          "subheadline": "From isolated work to deterministic release",
+          "body": "The next architectural principle is isolation followed by deterministic integration. Independent tasks can live in separate worktrees with their own receipts, logs, build state, and diff fingerprints. A scheduler can detect module or API overlap, classify conflict risk, and serialize dangerous work. A local Git fabric can then simulate merges, maintain a queue, build release-candidate trees from verified task results, and expose only clean release snapshots to remote Git."
+        },
+        {
+          "subheadline": "A repo-native knowledge graph",
+          "body": "Conversations should not be archived as raw chat logs. They should be distilled into token-efficient knowledge nodes: decisions, concepts, constraints, risks, patterns, task learnings, and proof relationships. A deterministic background routine can rank, decay, sort, and prepare that knowledge so agents receive relevant context without scanning old threads."
+        },
+        {
+          "subheadline": "Why this becomes an ASOS",
+          "body": "This is what turns NAOME from a harness into an operating system for software evolution. Code changes, proofs, task state, release readiness, architectural decisions, and agent experience become parts of the same living system. When an agent receives a higher-level goal, NAOME can surface relevant constraints, past mistakes, design decisions, and user intentions as ranked context."
+        }
+      ]
+    },
+    {
+      "id": "naome-roadmap",
+      "label": "The Naome Roadmap",
+      "headline": "The roadmap is a product line, not a version list",
+      "sections": [
+        {
+          "subheadline": "Background proof foundation",
+          "body": "The first direction is to make verification receipt-based. Checks should produce current, inspectable proof rather than merely turn gates green. Foreground agents then read proof state and react to relevant interrupts instead of repeatedly executing heavy checks in the middle of reasoning."
+        },
+        {
+          "subheadline": "Dark Factory",
+          "body": "The local factory is the background engine that makes proof sustainable. It supervises workers, owns runtime state safely, applies CPU and memory limits, and separates fast quality lanes from slower compile, test, heavy, and release lanes. The goal is not more automation noise; it is quieter, better-shaped evidence."
+        },
+        {
+          "subheadline": "Parallel task sessions",
+          "body": "Long-running software work needs isolation. Separate worktrees, per-task receipts, diff fingerprints, and overlap detection allow multiple sessions to progress without blindly corrupting each other's assumptions. Conflict risk becomes an explicit state: safe, caution, or blocked."
+        },
+        {
+          "subheadline": "Deterministic integration and release",
+          "body": "NAOME's Git direction is local complexity with external simplicity. Internally it can simulate merges, manage a queue, mark dependent work stale, and build release candidates from verified results. Externally the project should expose a clean, deployable history through release snapshots."
+        }
+      ]
+    },
+    {
+      "id": "what-exists-today",
+      "label": "What Exists Today",
+      "headline": "NAOME already exists as a repository harness",
+      "sections": [
+        {
+          "subheadline": "The current product shape",
+          "body": "Today NAOME is distributed as the @lamentis/naome CLI and wraps a repository with deterministic controls for Codex work. It provides harness health checks, task state, admission, routing, context selection, quality checks, semantic checks, architecture validation, and a commit gate that keeps proof and task ownership visible."
+        },
+        {
+          "subheadline": "What this already changes",
+          "body": "The practical shift is that agent work stops being a loose conversation around a repository and becomes a governed workflow inside the repository. The agent reads boundaries, follows task state, selects required context, records proof, and commits through a gate that understands the current task."
+        },
+        { "subheadline": "What is intentionally still emerging", "body": "The larger factory, multi-worktree scheduler, local Git fabric, release export model, and knowledge graph are layers that build on the existing harness. Each one turns more of the software process into structured, inspectable, deterministic state." }
+      ]
+    },
+    {
+      "id": "getting-started",
+      "label": "Getting Started with Naome",
+      "headline": "Start by letting NAOME shape the repository",
+      "sections": [
+        {
+          "subheadline": "Install and sync",
+          "body": "The entry flow is intentionally simple: install the NAOME package, sync it into a repository, and open that repository in Codex. From there, the human should be able to give ordinary product or engineering goals while NAOME supplies the workflow rules, boundaries, checks, and proof expectations."
+        },
+        {
+          "subheadline": "Work with goals, not command trivia",
+          "body": "The user should not need to memorize the internal command surface. The agent follows the harness: it checks admission, routes tasks, selects only relevant context, edits within scope, runs focused proof, and commits through the deterministic gate. NAOME's interface should make safe work feel normal rather than ceremonial."
+        },
+        {
+          "subheadline": "Beginner mental model",
+          "body": "Think of NAOME as a project operating layer. It tells the agent what it may read, what it may change, what proof is required, and how the current task relates to the repository. As the system grows, that layer will also include background proof, release readiness, local work isolation, and repo-native memory."
+        }
+      ]
+    }
+  ],
+  "de": [
+    {
+      "id": "autopoietisches-software-os",
+      "label": "Autopoietisches Software-OS",
+      "headline": "NAOME ist ein ASOS",
+      "sections": [
+        {
+          "subheadline": "Eine lebende Betriebsschicht",
+          "body": "NAOME ist ein Autopoietic Software OS für autonome, beweisgestützte Software-Evolution. Der Begriff Autopoiesis stammt aus der Systemtheorie: Er beschreibt Systeme, die ihre eigene Organisation fortlaufend reproduzieren und erhalten. Auf Software übertragen geht diese Idee über eine klassische Toolchain hinaus. Ein Repository sollte nicht nur Code, Tests und Tickets enthalten, sondern auch die Arbeitsbedingungen, mit denen Software langfristig sicher durch Menschen und Agenten weiterentwickelt werden kann."
+        },
+        {
+          "subheadline": "Proof als Stoffwechsel des Systems",
+          "body": "Die Proof-Schicht ist die erste Voraussetzung. Statt den Foreground-Agenten jeden schweren Check selbst ausführen zu lassen, bewegt sich NAOME zu receipt-basiertem Proof: Quality-, Compile-, Test- und Release-Signale werden zu strukturierter Evidenz, die gelesen, invalidiert, erneuert oder als stale markiert werden kann."
+        },
+        {
+          "subheadline": "Von isolierter Arbeit zu deterministischem Release",
+          "body": "Das nächste Architekturprinzip ist Isolation mit anschließender deterministischer Integration. Unabhängige Tasks können in separaten Worktrees mit eigenen Receipts, Logs, Build-State und Diff-Fingerprints laufen. Ein Scheduler erkennt Modul- oder API-Overlap, bewertet Konfliktrisiko und serialisiert gefährliche Arbeit."
+        },
+        {
+          "subheadline": "Ein repo-nativer Knowledge Graph",
+          "body": "Conversations sollen nicht als rohe Chatverläufe archiviert werden. Sie sollten in token-effiziente Knowledge Nodes destilliert werden: Entscheidungen, Konzepte, Constraints, Risiken, Patterns, Task-Learnings und Proof-Beziehungen. Eine deterministische Background-Routine kann dieses Wissen ranken, Relevanz langsam abfallen lassen, sortieren und vorbereiten."
+        },
+        {
+          "subheadline": "Warum daraus ein ASOS wird",
+          "body": "Dadurch wird NAOME von einem Harness zu einem Betriebssystem für Software-Evolution. Code-Änderungen, Proofs, Task-State, Release Readiness, Architekturentscheidungen und Agentenerfahrung werden Teile desselben lebenden Systems. Wenn ein Agent ein höheres Ziel umsetzt, kann NAOME relevante Constraints, frühere Fehler, Designentscheidungen und Produktintentionen als gerankten Kontext mitgeben."
+        }
+      ]
+    },
+    {
+      "id": "naome-roadmap",
+      "label": "Die Naome Roadmap",
+      "headline": "Die Roadmap ist eine Produktlinie, keine Versionsliste",
+      "sections": [
+        {
+          "subheadline": "Background Proof Foundation",
+          "body": "Der erste Schritt ist receipt-basierte Verifikation. Checks sollen aktuelle, lesbare Proofs erzeugen, statt Gates nur blind grün zu setzen. Foreground-Agenten lesen dann Proof-State und reagieren auf relevante Interrupts, anstatt schwere Checks ständig selbst auszuführen."
+        },
+        {
+          "subheadline": "Dark Factory",
+          "body": "Die lokale Factory ist die Background Engine, die Proof nachhaltig macht. Sie überwacht Worker, besitzt Runtime-State sicher, begrenzt CPU und Memory und trennt schnelle Quality-Lanes von langsameren Compile-, Test-, Heavy- und Release-Lanes. Das Ziel ist nicht mehr Automationslärm, sondern besser geformte Evidenz."
+        },
+        {
+          "subheadline": "Parallele Task-Sessions",
+          "body": "Langlaufende Softwarearbeit braucht Isolation. Separate Worktrees, task-spezifische Receipts, Diff-Fingerprints und Overlap Detection erlauben parallele Sessions, ohne dass sie sich blind gegenseitig stören. Konfliktrisiko wird zu einem expliziten Zustand: safe, caution oder blocked."
+        },
+        {
+          "subheadline": "Deterministische Integration und Release",
+          "body": "NAOMEs Git-Richtung ist lokale Komplexität bei äußerer Einfachheit. Intern kann NAOME Merges simulieren, eine Queue verwalten, abhängige Arbeit stale markieren und Release Candidates aus geprüften Ergebnissen bauen. Nach außen soll das Projekt eine saubere, deploybare Release-Historie zeigen."
+        }
+      ]
+    },
+    {
+      "id": "was-heute-existiert",
+      "label": "Was heute existiert",
+      "headline": "NAOME existiert bereits als Repository-Harness",
+      "sections": [
+        {
+          "subheadline": "Die aktuelle Produktform",
+          "body": "Heute wird NAOME als @lamentis/naome CLI ausgeliefert und umhüllt ein Repository mit deterministischen Kontrollen für Codex-Arbeit. Dazu gehören Harness Health, Task-State, Admission, Routing, Context Selection, Quality Checks, Semantic Checks, Architecture Validation und ein Commit-Gate."
+        },
+        {
+          "subheadline": "Was sich dadurch bereits verändert",
+          "body": "Agentenarbeit ist dadurch keine lose Unterhaltung mehr um ein Repository herum, sondern ein geführter Workflow im Repository. Der Agent liest Grenzen, folgt Task-State, wählt relevanten Kontext, erzeugt Proof und committet durch ein Gate, das den aktuellen Task versteht."
+        },
+        {
+          "subheadline": "Was bewusst noch entsteht",
+          "body": "Factory, Multi-Worktree Scheduler, lokale Git-Fabric, Release Export und Knowledge Graph sind keine isolierten Feature-Checkboxes. Sie sind Schichten, die auf dem bestehenden Harness aufbauen und immer mehr Softwareprozess in strukturierten, prüfbaren Zustand verwandeln."
+        }
+      ]
+    },
+    {
+      "id": "erste-schritte",
+      "label": "Erste Schritte mit Naome",
+      "headline": "Beginne damit, NAOME das Repository formen zu lassen",
+      "sections": [
+        {
+          "subheadline": "Installieren und synchronisieren",
+          "body": "Der Einstieg soll einfach bleiben: NAOME installieren, in ein Repository synchronisieren und dieses Repository in Codex öffnen. Danach soll der Mensch normale Produkt- oder Engineering-Ziele formulieren können, während NAOME Workflow-Regeln, Grenzen, Checks und Proof-Erwartungen bereitstellt."
+        },
+        {
+          "subheadline": "Mit Zielen arbeiten, nicht mit Kommandodetails",
+          "body": "Der User sollte die interne Command-Oberfläche nicht auswendig lernen müssen. Der Agent folgt dem Harness: Admission prüfen, Tasks routen, nur relevanten Kontext auswählen, innerhalb des Scopes editieren, fokussierten Proof laufen lassen und durch das deterministische Gate committen."
+        },
+        { "subheadline": "Mentales Modell für Beginner", "body": "Denke an NAOME als Betriebsschicht eines Projekts. Sie sagt dem Agenten, was er lesen darf, was er ändern darf, welcher Proof nötig ist und wie der aktuelle Task zum Repository steht. Mit der Zeit gehören dazu auch Background Proof, Release Readiness, lokale Work-Isolation und repo-natives Gedächtnis." }
+      ]
+    }
+  ]
+}
