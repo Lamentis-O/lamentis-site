@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "./site-home.css";
+@import "./product-page.css";
 @import "./site-navigation.css";
 @import "./site-footer.css";
 @import "./site-footer-language.css";
@@ -364,68 +365,6 @@ body {
   .ds-home-empty {
     flex: 1 0 auto;
     min-height: clamp(18rem, 40vh, 42rem);
-  }
-
-  .ds-product-page {
-    display: flex;
-    flex: 1 0 auto;
-    align-items: center;
-    justify-content: center;
-    min-height: clamp(34rem, 58vh, 62rem);
-    padding: var(--ds-space-16) 0;
-    text-align: center;
-  }
-
-  .ds-product-intro {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 0;
-  }
-
-  .ds-product-title {
-    margin: -0.12em 0 -0.08em;
-    padding: 0.12em 0 0.08em;
-    width: fit-content;
-    max-width: 100%;
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    font-family: var(--ds-font-family-product-display);
-    font-size: clamp(6.2rem, 12vw, 15.2rem);
-    font-weight: 900;
-    line-height: 0.9;
-    overflow-wrap: anywhere;
-    -webkit-text-fill-color: transparent;
-  }
-
-  .ds-product-title--naome {
-    background-image:
-      url("/assets/images/naome-texture-20260523.webp"),
-      var(--ds-image-placeholder-naome-texture);
-    background-position: center;
-    background-size: cover, cover;
-  }
-
-  .ds-product-title--nox {
-    background-image: var(--ds-gradient-product-nox);
-    font-family: var(--ds-font-family-product-mono);
-    letter-spacing: 0;
-  }
-
-  .ds-product-title--noma {
-    background-image: var(--ds-gradient-product-noma);
-    font-family: var(--ds-font-family-product-serif-jp);
-    letter-spacing: 0;
-  }
-
-  .ds-product-subline {
-    margin: var(--ds-space-8) 0 0;
-    max-width: 68rem;
-    color: var(--ds-color-muted);
-    font-size: clamp(1.8rem, 2.2vw, 2.6rem);
-    font-weight: var(--ds-font-weight-medium);
-    line-height: 1.28;
   }
 
   .sr-only {

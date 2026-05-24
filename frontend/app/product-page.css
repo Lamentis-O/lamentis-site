@@ -1,0 +1,100 @@
+@layer components {
+  .ds-product-page {
+    display: flex;
+    flex: 1 0 auto;
+    align-items: center;
+    justify-content: center;
+    min-height: clamp(34rem, 58vh, 62rem);
+    padding: var(--ds-space-16) 0;
+    text-align: center;
+  }
+
+  .ds-product-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 0;
+  }
+
+  .ds-product-title {
+    margin: -0.12em 0 -0.08em;
+    padding: 0.12em 0 0.08em;
+    width: fit-content;
+    max-width: 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    font-family: var(--ds-font-family-product-display);
+    font-size: clamp(6.2rem, 12vw, 15.2rem);
+    font-weight: 900;
+    line-height: 0.9;
+    overflow-wrap: anywhere;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .ds-product-title--naome {
+    background-image:
+      url("/assets/images/naome-texture-20260523.webp"),
+      var(--ds-image-placeholder-naome-texture);
+    background-position: center;
+    background-size: cover, cover;
+  }
+
+  .ds-product-title--nox {
+    background-image: var(--ds-gradient-product-nox);
+    font-family: var(--ds-font-family-product-mono);
+    letter-spacing: 0;
+  }
+
+  .ds-product-title--noma {
+    background-image: var(--ds-gradient-product-noma);
+    font-family: var(--ds-font-family-product-serif-jp);
+    letter-spacing: 0;
+  }
+
+  .ds-product-subline {
+    margin: var(--ds-space-8) 0 0;
+    max-width: 68rem;
+    color: var(--ds-color-muted);
+    font-size: clamp(1.8rem, 2.2vw, 2.6rem);
+    font-weight: var(--ds-font-weight-medium);
+    line-height: 1.28;
+  }
+
+  .ds-product-github-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--ds-space-2);
+    margin-top: var(--ds-space-8);
+    min-height: 4.4rem;
+    padding: 0 var(--ds-space-6);
+    border-radius: var(--ds-radius-pill);
+    background: var(--ds-color-primary-text);
+    color: var(--ds-color-primary-background);
+    font-size: var(--ds-font-size-sm);
+    font-weight: var(--ds-font-weight-bold);
+    line-height: 1;
+    text-decoration: none;
+    transition:
+      filter 150ms ease,
+      transform 150ms ease;
+  }
+
+  .ds-product-github-link:hover {
+    filter: brightness(0.92);
+    transform: translateY(-1px);
+  }
+
+  .ds-product-github-link:focus-visible {
+    outline: 2px solid var(--ds-color-primary-accent);
+    outline-offset: 3px;
+  }
+
+  .ds-product-github-link svg {
+    display: block;
+    width: 1.8rem;
+    height: 1.8rem;
+    flex: 0 0 auto;
+  }
+}

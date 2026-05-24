@@ -26,8 +26,8 @@
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: clamp(1.6rem, 3vw, 3.2rem);
+    justify-content: flex-start;
+    gap: clamp(4.8rem, 9vw, 10.4rem);
     padding: 1.3rem 0;
     flex-wrap: wrap;
   }
@@ -150,6 +150,11 @@
   }
 
   @media (max-width: 640px) {
+    .ds-site-navigation__inner {
+      justify-content: space-between;
+      gap: clamp(1.6rem, 5vw, 3.2rem);
+    }
+
     .ds-site-navigation__links {
       display: none;
     }
