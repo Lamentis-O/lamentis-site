@@ -22,9 +22,15 @@ type SiteNavigationProps = {
 };
 
 type ProductLink = FooterSectionLink & { href: string };
+type ProductSlug = NonNullable<FooterSectionLink["product"]>;
 type SetMobileMenuOpen = Dispatch<SetStateAction<boolean>>;
 
 const desktopNavigationQuery = "(min-width: 641px)";
+const productGithubHrefs = {
+  naome: "https://github.com/Lamentis-O/naome",
+  nox: "https://github.com/Lamentis-O/nox",
+  noma: "https://github.com/Lamentis-O/noma",
+} satisfies Record<ProductSlug, string>;
 
 function useMeasuredNavigationHeight(navigationInnerRef: RefObject<HTMLDivElement | null>) {
   useEffect(() => {
@@ -122,15 +128,79 @@ function useCloseMobileMenuOnDesktop(
   }, [isMobileMenuOpen, setIsMobileMenuOpen]);
 }
 
-function ProductLinks({ links }: { links: ProductLink[] }) {
+function ProductLinks({
+  links,
+  pathname,
+}: {
+  links: ProductLink[];
+  pathname: string;
+}) {
   return (
     <div className="ds-site-navigation__links">
-      {links.map((link) => (
-        <Link key={link.href} href={link.href} className="ds-site-navigation__link">
-          {link.label}
-        </Link>
-      ))}
+      {links.map((link) => {
+        const isActive = pathname === link.href;
+        const className = isActive
+          ? "ds-site-navigation__link ds-site-navigation__link--active"
+          : "ds-site-navigation__link";
+
+        return (
+          <Link
+            key={link.href}
+            href={link.href}
+            className={className}
+            aria-current={isActive ? "page" : undefined}
+          >
+            <span className="ds-site-navigation__link-label-full">
+              {link.label}
+            </span>
+            <span className="ds-site-navigation__link-label-short" aria-hidden="true">
+              {link.productName ?? link.label}
+            </span>
+          </Link>
+        );
+      })}
     </div>
+  );
+}
+
+function getActiveProductGithubHref(pathname: string, locale: Locale) {
+  const activeProduct = Object.keys(productGithubHrefs).find(
+    (product) => pathname === `/${locale}/${product}`,
+  ) as ProductSlug | undefined;
+
+  return activeProduct ? productGithubHrefs[activeProduct] : null;
+}
+
+function GitHubIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      width={20}
+      height={20}
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <path
+        fill="currentColor"
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M12 0C5.372 0 0 5.373 0 12c0 5.302 3.438 9.8 8.205 11.387.6.111.82-.261.82-.577 0-.285-.011-1.04-.016-2.04-3.338.724-4.043-1.61-4.043-1.61-.546-1.387-1.335-1.756-1.335-1.756-1.091-.745.083-.73.083-.73 1.205.084 1.84 1.237 1.84 1.237 1.07 1.835 2.81 1.305 3.495.998.108-.774.418-1.306.76-1.605-2.665-.304-5.467-1.332-5.467-5.931 0-1.31.467-2.381 1.236-3.22-.125-.304-.535-1.527.117-3.184 0 0 1.008-.322 3.3 1.23a11.37 11.37 0 0 1 3.003-.404c1.02.005 2.046.137 3.003.404 2.29-1.552 3.296-1.23 3.296-1.23.654 1.657.244 2.88.12 3.184.77.839 1.235 1.91 1.235 3.22 0 4.61-2.807 5.624-5.48 5.922.43.372.823 1.103.823 2.222 0 1.605-.014 2.898-.014 3.293 0 .319.216.694.825.576C20.565 21.796 24 17.3 24 12 24 5.373 18.627 0 12 0z"
+      />
+    </svg>
+  );
+}
+
+function ProductGithubLink({ href }: { href: string }) {
+  return (
+    <a
+      className="ds-site-navigation__github-link"
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <GitHubIcon />
+      <span>GitHub</span>
+    </a>
   );
 }
 
@@ -191,6 +261,7 @@ export function SiteNavigation({ locale }: SiteNavigationProps) {
   const navigationInnerRef = useRef<HTMLDivElement>(null);
 
   const productLinks = links.filter((link): link is ProductLink => Boolean(link.href));
+  const activeProductGithubHref = getActiveProductGithubHref(pathname, locale);
 
   useMeasuredNavigationHeight(navigationInnerRef);
   useBodyScrollLock(isMobileMenuOpen);
@@ -214,7 +285,11 @@ export function SiteNavigation({ locale }: SiteNavigationProps) {
           <span>Lamentis</span>
         </Link>
 
-        <ProductLinks links={productLinks} />
+        <ProductLinks links={productLinks} pathname={pathname} />
+
+        {activeProductGithubHref ? (
+          <ProductGithubLink href={activeProductGithubHref} />
+        ) : null}
 
         <button
           type="button"

@@ -1,5 +1,7 @@
 @import "tailwindcss";
 @import "./site-home.css";
+@import "./product-page.css";
+@import "./article-section.css";
 @import "./site-navigation.css";
 @import "./site-footer.css";
 @import "./site-footer-language.css";
@@ -16,6 +18,10 @@
     sans-serif;
   --ds-font-family-product-display: var(--font-product-display),
     var(--ds-font-family);
+  --ds-font-family-product-mono: var(--font-product-mono),
+    "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --ds-font-family-product-serif-jp: var(--font-product-serif-jp),
+    "Times New Roman", Times, serif;
   --ds-font-size-base: 1rem;
   --ds-font-size-sm: 0.875rem;
   --ds-font-size-lg: 1.125rem;
@@ -60,11 +66,14 @@
   --ds-transition: all var(--ds-transition-duration) var(--ds-transition-timing);
   --ds-transition-faster: all 120ms ease;
 
-  --ds-color-primary-text-light: rgb(16, 19, 23);
-  --ds-color-primary-text-dark: rgb(248, 246, 247);
+  --ds-color-primary-text-light: rgb(0, 0, 0);
+  --ds-color-primary-text-dark: rgb(255, 255, 255);
 
-  --ds-color-secondary-text-light: rgb(183, 190, 198);
-  --ds-color-secondary-text-dark: rgb(90, 92, 97);
+  --ds-color-secondary-text-light: rgb(51, 51, 51);
+  --ds-color-secondary-text-dark: rgba(255, 255, 255, 0.8);
+
+  --ds-color-tertiary-text-light: rgb(102, 102, 102);
+  --ds-color-tertiary-text-dark: rgba(255, 255, 255, 0.6);
 
   --ds-color-primary-accent-light: rgb(106, 80, 255);
   --ds-color-primary-accent-dark: rgb(95, 67, 221);
@@ -100,15 +109,15 @@
   );
   --ds-gradient-product-nox: linear-gradient(
     to bottom right,
-    rgb(225, 29, 72) 0%,
-    rgb(190, 24, 93) 48%,
+    rgb(249, 115, 22) 0%,
+    rgb(217, 70, 239) 52%,
     rgb(124, 58, 237) 100%
   );
   --ds-gradient-product-noma: linear-gradient(
     to bottom right,
-    rgb(251, 146, 60) 0%,
-    rgb(249, 115, 22) 44%,
-    rgb(236, 72, 153) 100%
+    rgb(20, 184, 166) 0%,
+    rgb(14, 165, 233) 46%,
+    rgb(139, 92, 246) 100%
   );
   --ds-image-placeholder-naome-texture: url("data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAABQAwCdASogABgAPv1mqVC/paQit+gD8B+JZgCsOUABtFSRgAD+7PyDB/zBP/ST/jdzjP0B+89JmaeFMvlv+1fDjw9DPVLDHS8fs4QAAAA=");
 
@@ -127,8 +136,8 @@
     var(--ds-color-primary-text-dark) 14%,
     transparent
   );
-  --ds-color-muted-light: rgb(92, 95, 102);
-  --ds-color-muted-dark: rgb(141, 142, 148);
+  --ds-color-muted-light: var(--ds-color-tertiary-text-light);
+  --ds-color-muted-dark: var(--ds-color-tertiary-text-dark);
 
   --ds-color-surface-subtle-light: rgb(247, 247, 247);
   --ds-color-surface-subtle-dark: rgb(8, 8, 8);
@@ -145,6 +154,7 @@
 
   --ds-color-primary-text: var(--ds-color-primary-text-light);
   --ds-color-secondary-text: var(--ds-color-secondary-text-light);
+  --ds-color-tertiary-text: var(--ds-color-tertiary-text-light);
   --ds-color-primary-accent: var(--ds-color-primary-accent-light);
   --ds-color-success: var(--ds-color-success-light);
   --ds-color-error: var(--ds-color-error-light);
@@ -196,6 +206,7 @@
 :root:not([data-theme="dark"]) {
   --ds-color-primary-text: var(--ds-color-primary-text-light);
   --ds-color-secondary-text: var(--ds-color-secondary-text-light);
+  --ds-color-tertiary-text: var(--ds-color-tertiary-text-light);
   --ds-color-primary-accent: var(--ds-color-primary-accent-light);
   --ds-color-success: var(--ds-color-success-light);
   --ds-color-error: var(--ds-color-error-light);
@@ -217,6 +228,7 @@
 [data-theme="dark"] {
   --ds-color-primary-text: var(--ds-color-primary-text-dark);
   --ds-color-secondary-text: var(--ds-color-secondary-text-dark);
+  --ds-color-tertiary-text: var(--ds-color-tertiary-text-dark);
   --ds-color-primary-accent: var(--ds-color-primary-accent-dark);
   --ds-color-success: var(--ds-color-success-dark);
   --ds-color-error: var(--ds-color-error-dark);
@@ -239,6 +251,7 @@
   :root:not([data-theme]) {
     --ds-color-primary-text: var(--ds-color-primary-text-dark);
     --ds-color-secondary-text: var(--ds-color-secondary-text-dark);
+    --ds-color-tertiary-text: var(--ds-color-tertiary-text-dark);
     --ds-color-primary-accent: var(--ds-color-primary-accent-dark);
     --ds-color-success: var(--ds-color-success-dark);
     --ds-color-error: var(--ds-color-error-dark);
@@ -360,56 +373,6 @@ body {
   .ds-home-empty {
     flex: 1 0 auto;
     min-height: clamp(18rem, 40vh, 42rem);
-  }
-
-  .ds-product-page {
-    display: flex;
-    flex: 1 0 auto;
-    align-items: center;
-    justify-content: center;
-    min-height: clamp(34rem, 58vh, 62rem);
-    padding: var(--ds-space-16) 0;
-    text-align: center;
-  }
-
-  .ds-product-intro {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 0;
-  }
-
-  .ds-product-title {
-    margin: -0.12em 0 -0.08em;
-    padding: 0.12em 0 0.08em;
-    width: fit-content;
-    max-width: 100%;
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    font-family: var(--ds-font-family-product-display);
-    font-size: clamp(6.2rem, 12vw, 15.2rem);
-    font-weight: 900;
-    line-height: 0.9;
-    overflow-wrap: anywhere;
-    -webkit-text-fill-color: transparent;
-  }
-
-  .ds-product-title--naome {
-    background-image:
-      url("/assets/images/naome-texture-20260523.webp"),
-      var(--ds-image-placeholder-naome-texture);
-    background-position: center;
-    background-size: cover, cover;
-  }
-
-  .ds-product-subline {
-    margin: var(--ds-space-8) 0 0;
-    max-width: 68rem;
-    color: var(--ds-color-muted);
-    font-size: clamp(1.8rem, 2.2vw, 2.6rem);
-    font-weight: var(--ds-font-weight-medium);
-    line-height: 1.28;
   }
 
   .sr-only {
