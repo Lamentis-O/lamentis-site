@@ -3,7 +3,10 @@
 import { useEffect, useState } from "react";
 
 type NaomeFeatureGridProps = {
-  items: readonly { id: string; label: string }[];
+  items: readonly {
+    id: string;
+    label: string;
+  }[];
 };
 
 export function NaomeFeatureGrid({ items }: NaomeFeatureGridProps) {
@@ -61,8 +64,8 @@ export function NaomeFeatureGrid({ items }: NaomeFeatureGridProps) {
       {items.map((item, index) => {
         const className =
           index === activeIndex
-            ? "ds-naome-section-nav__item ds-naome-section-nav__item--active"
-            : "ds-naome-section-nav__item";
+            ? "ds-naome-section-nav__item ds-naome-section-nav__item--active ds-naome-section-nav__item--article"
+            : "ds-naome-section-nav__item ds-naome-section-nav__item--article";
 
         return (
           <button

@@ -111,7 +111,7 @@
   .ds-naome-article-layout {
     display: grid;
     width: 100%;
-    grid-template-columns: minmax(19rem, 0.36fr) minmax(0, 0.64fr);
+    grid-template-columns: 3fr 7fr;
     gap: clamp(var(--ds-space-12), 9vw, 12.8rem);
     align-items: start;
     padding-top: clamp(2.5rem, 5vw, 6.4rem);
@@ -147,6 +147,25 @@
     transition: color 160ms ease;
   }
 
+  .ds-naome-section-nav__item--article {
+    font-size: 1.45rem;
+    font-weight: var(--ds-font-weight-bold);
+  }
+
+  .ds-naome-section-nav__item--section {
+    padding-left: 3.4rem;
+    font-size: 1.45rem;
+    font-weight: var(--ds-font-weight-regular);
+    color: var(--ds-color-tertiary-text);
+    opacity: 0.9;
+  }
+
+  .ds-naome-section-nav__item--section::before {
+    width: 0.55rem;
+    height: 0.55rem;
+    left: 0.6rem;
+  }
+
   .ds-naome-section-nav__item::before {
     position: absolute;
     top: 50%;
@@ -167,6 +186,15 @@
   }
 
   .ds-naome-section-nav__item--active::before {
+    opacity: 1;
+  }
+
+  .ds-naome-section-nav__item--article.ds-naome-section-nav__item--active {
+    color: var(--ds-color-primary-text);
+  }
+
+  .ds-naome-section-nav__item--section.ds-naome-section-nav__item--active {
+    color: var(--ds-color-primary-text);
     opacity: 1;
   }
 
